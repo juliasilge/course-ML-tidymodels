@@ -2,7 +2,7 @@
 type: slides
 ---
 
-# Getting started with caret 💫
+# Getting started with tidymodels 💫
 
 Notes: You just performed some exploratory data analysis and built a simple linear model using base R's `lm()` function.
 
@@ -19,11 +19,9 @@ Notes: You were able to see how the fuel efficiency for these cars is distribute
 
 # Tools for predictive modeling
 
-### the [tidymodels](https://github.com/tidymodels/tidymodels) metapackage
+![tidymodels](https://github.com/juliasilge/supervised-ML-case-studies-course/blob/master/img/tidymodels_small.png?raw=true)
 
-### the [caret](https://topepo.github.io/caret/) package
-
-Notes: We are going to use packages from the tidymodels toolkit, as well as the caret package, in this course and the first thing we are going to practice is splitting your data into a training set and a testing set.
+Notes: We are going to use packages from tidymodels in this course. When you type `library(tidymodels)`, you load a collection of packages for modeling and machine learning using tidyverse principles. I usually just load them all at once if I am working on a modeling project. All the packages are designed to be consistent, composable, and to support good modeling practices. The first thing we are going to practice is splitting your data into a training set and a testing set.
 
 ---
 
@@ -36,11 +34,11 @@ Notes: It is best practice to hold out some of your data for **testing** in orde
 # Training data and testing data with [rsample](https://tidymodels.github.io/rsample/)
 
 ```r
-library(rsample)
+library(tidymodels)
  
 car_split <- car_vars %>%
     initial_split(prop = 0.8,
-                  strata = "Aspiration")
+                  strata = Aspiration)
 
 car_training <- training(car_split)
 car_testing <- testing(car_split)
@@ -53,7 +51,7 @@ Notes: You can create these sets so that they balance some characteristic in you
 # Training data and testing data
 
 - **Build** your model with your training data 
-- **Choose** your model with your validation data 
+- **Choose** your model with your validation data, or resampled datasets 
 - **Evaluate** your model with your testing data 
 
 Notes:  Why are we even bothering with this? 
@@ -67,7 +65,9 @@ It's also possible to divide your data into *three* partitions as you build, cho
 # Training a model
 
 ```r
-library(caret)
+library(tidymodels)
+
+lm_spec <- linear_re
 
 fit_lm <- train(log(MPG) ~ ., 
                 method = "lm", 
