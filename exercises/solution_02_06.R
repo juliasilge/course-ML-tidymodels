@@ -1,0 +1,19 @@
+library(tidyverse)
+stackoverflow <- read_csv("data/stackoverflow.csv") %>%
+    mutate(Remote = factor(Remote, levels = c("Remote", "Not remote")))
+
+# Load rsample
+library(rsample)
+
+# Create stack_select dataset
+stack_select <- stackoverflow %>%
+    select(-Respondent)
+
+# Split the data into training and testing sets
+set.seed(1234)
+stack_split <- stack_select %>%
+    initial_split(p = 0.8,
+                  strata = "Remote")
+
+stack_train <- training(stack_split)
+stack_test <- testing(stack_split)
