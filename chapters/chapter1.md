@@ -105,7 +105,7 @@ Creating training/testing splits reduces overfitting. When you evaluate your mod
 
 **Instructions**
 
-- Load the `rsample` package. 
+- Load the `tidymodels` metapackage. 
 - Create a data split that divides the original data into 80%/20% sections and (roughly) evenly divides the partitions between the different types of `Transmission`.
 - Assign the 80% partition to `car_train` and the 20% partition to `car_test`.
 

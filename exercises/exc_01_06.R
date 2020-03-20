@@ -1,7 +1,7 @@
 library(tidyverse)
 car_vars <- readRDS("data/c1_cars_vars_full.rds")
 
-# Load rsample
+# Load tidymodels
 ___
 
 # Split the data into training and test sets
