@@ -119,30 +119,30 @@ Creating training/testing splits reduces overfitting. When you evaluate your mod
 
 </exercise>
 
-<exercise id="7" title="Training models with caret">
+<exercise id="7" title="Training models with tidymodels">
 
-Now that your `car_train` data is ready, you can fit a set of models with caret. The [`train()`](https://topepo.github.io/caret/model-training-and-tuning.html#model-training-and-parameter-tuning) function from caret is flexible and powerful. It allows you to try out many different kinds of models and fitting procedures. To start off, train one linear regression model and one random forest model, without any resampling. (This is what `trainControl(method = "none")` does; it turns off all resampling.)
+Now that your `car_train` data is ready, you can fit a set of models with tidymodels. When we model data, we deal with model types (such as linear regression or random forest), mode (regression or classification), and model engines (how the models are actually fit). In tidymodels, we capture that modeling information in a model specification, so setting up your model specification can be a good place to start. In these exercises, fit one linear regression model and one random forest model, without any resampling of your data.
 
 **Instructions**
 
-- Load the caret package. 
-- Train a basic linear regression model on your `car_train` data. 
+- Load the tidymodels metapackage. 
+- Fit a basic linear regression model to your `car_train` data. 
 
 (Notice that we are fitting to `log(MPG)` since the fuel efficiency had a log normal distribution.)
 
 <codeblock id="01_07_1">
 
-For linear regression, use `method = "lm"`.
+For linear regression, use the function `linear_reg()`.
 
 </codeblock>
 
 **Instructions**
 
-- Train a random forest model on your `car_train` data.
+- Fit a random forest model to your `car_train` data.
 
 <codeblock id="01_07_2">
 
-For random forest, use `method = "rf"`.
+For a random forest model, use the function `rand_forest()`.
 
 </codeblock>
 
