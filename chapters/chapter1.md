@@ -154,7 +154,7 @@ The `fit_lm` and `fit_rf` models you just trained are in your environment. It's 
 
 **Instructions**
 
-- Load the yardstick package. 
+- Load the tidymodels metapackage, to access yardstick functions. 
 - Create new columns for model predictions from each of the models you have trained, first linear regression and then random forest.
 - Evaluate the performance of these models using [`metrics()`](https://tidymodels.github.io/yardstick/reference/metrics.html) by specifying the column in the original data that contains the real fuel efficiency.
 
