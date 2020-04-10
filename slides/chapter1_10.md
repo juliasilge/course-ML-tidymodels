@@ -5,7 +5,9 @@ type: slides
 # Training a model with resampling
 
 
-Notes: You just built and then evaluated models that were trained one time on the whole training set at once. Data scientists have come up with a slew of approaches to build models that perform better than this; a lot of important ones fall under the category of **resampling**.
+Notes: You just built and then evaluated models that were trained one time on the whole training set at once. Statisticians have come up with a slew of approaches to build models that perform better than this; a lot of important ones fall under the category of **resampling**.
+
+The idea of resampling is to create simulated data sets that can be used to estimate the performance of your model, instead of using either your training set (which can be overly optimistic) or your testing set (which is extremely valuable and can only be used once or at most twice).
 
 ---
 

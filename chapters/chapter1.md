@@ -90,7 +90,7 @@ Before embarking on more complex machine learning models, it's a good idea to bu
 
 </exercise>
 
-<exercise id="5" title="Getting started with caret" type="slides">
+<exercise id="5" title="Getting started with tidymodels" type="slides">
 
 <slides source="chapter1_05">
 </slides>
@@ -121,7 +121,7 @@ Creating training/testing splits reduces overfitting. When you evaluate your mod
 
 <exercise id="7" title="Training models with tidymodels">
 
-Now that your `car_train` data is ready, you can fit a set of models with tidymodels. When we model data, we deal with model types (such as linear regression or random forest), mode (regression or classification), and model engines (how the models are actually fit). In tidymodels, we capture that modeling information in a model specification, so setting up your model specification can be a good place to start. In these exercises, fit one linear regression model and one random forest model, without any resampling of your data.
+Now that your `car_train` data is ready, you can fit a set of models with tidymodels. When we model data, we deal with model **type** (such as linear regression or random forest), **mode** (regression or classification), and model **engine** (how the models are actually fit). In tidymodels, we capture that modeling information in a model specification, so setting up your model specification can be a good place to start. In these exercises, fit one linear regression model and one random forest model, without any resampling of your data.
 
 **Instructions**
 

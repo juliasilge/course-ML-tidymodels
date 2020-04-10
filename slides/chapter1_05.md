@@ -19,9 +19,11 @@ Notes: You were able to see how the fuel efficiency for these cars is distribute
 
 # Tools for predictive modeling
 
-![tidymodels](https://github.com/juliasilge/supervised-ML-case-studies-course/blob/master/img/tidymodels_small.png?raw=true)
+![tidymodels](https://github.com/juliasilge/course-ML-tidymodels/blob/master/img/tidymodels_small.png?raw=true)
 
-Notes: We are going to use packages from tidymodels in this course. When you type `library(tidymodels)`, you load a collection of packages for modeling and machine learning using tidyverse principles. I usually just load them all at once if I am working on a modeling project. All the packages are designed to be consistent, modular, and to support good modeling practices. The first thing we are going to practice is splitting your data into a training set and a testing set.
+Notes: We are going to use packages from tidymodels in this course. 
+
+When you type `library(tidymodels)`, you load a collection of packages for modeling and machine learning using tidyverse principles. I usually just load them all at once if I am working on a modeling project. All the packages are designed to be consistent, modular, and to support good modeling practices. The first thing we are going to practice is splitting your data into a training set and a testing set.
 
 ---
 
@@ -88,18 +90,19 @@ fit_rf <- rf_mod %>%
 
 #### Three concepts in specifying a model
 
-- Model type
-- Model mode
-- Model engine
+- Model **type**
+- Model **mode**
+- Model **engine**
 
 Notes: Once you have a training dataset, you can train a model using that dataset! 
 
 In tidymodels, you specify models using three concepts. 
 
-- Model **type** differentiates models such as logistic regression, decision tree models, and so forth. - Model **mode** includes common options like regression and classification; some model types support either of these while some only have one mode (notice in the example on this slide that we didn't need to set the mode for `linear_reg()` because it only does regression). 
+- Model **type** differentiates models such as logistic regression, decision tree models, and so forth. 
+- Model **mode** includes common options like regression and classification; some model types support either of these while some only have one mode (notice in the example on this slide that we didn't need to set the mode for `linear_reg()` because it only does regression). 
 - Model **engine** is the computational tool which will be used to fit the model. Often these are R packages, such as `"lm"` for OLS or the different implementations of random forest models.
 
-After a model has been _specified_, it can be _fit_, using a symbolic description of the model (a formula) and some data. We're going to start fitting models with `data = car_train`, as you see here. This means we're saying, "Just fit the model one time, on the whole training set". Once you have fit your model, you can evaluate how well the model is performing. 
+After a model has been _specified_, it can be _fit_, typically using a symbolic description of the model (a formula) and some data. We're going to start fitting models with `data = car_train`, as you see here. This means we're saying, "Just fit the model one time, on the whole training set". Once you have fit your model, you can evaluate how well the model is performing. 
 
 ---
 
