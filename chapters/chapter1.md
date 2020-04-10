@@ -90,7 +90,7 @@ Before embarking on more complex machine learning models, it's a good idea to bu
 
 </exercise>
 
-<exercise id="5" title="Getting started with caret" type="slides">
+<exercise id="5" title="Getting started with tidymodels" type="slides">
 
 <slides source="chapter1_05">
 </slides>
