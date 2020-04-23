@@ -57,9 +57,9 @@ The first time you run a code exercise, it may take a little while for your Dock
 
 **Wherever you see `___` in a code exercise, replace it with the correct code as instructed. Run the code (via the button) to see if it will run, and submit it (via the other button) to check if it's correct.**
 
-`tidyverse` is loaded for you. 
+The `tidyverse` metapackage is loaded for you. 
 
-- Print the `cars2018` object. Notice that some of the column names have spaces in them and are surrounded by backticks, like `` `Recommended Fuel` ``.
+- Take a look at the `cars2018` object using `glimpse()`. Notice that some of the column names have spaces in them and are surrounded by backticks, like `` `Recommended Fuel` ``.
 - Use the appropriate column from the data set in the call to `aes()` so you can plot a histogram of fuel efficiency (MPG).
 - Set the correct `x` and `y` labels.
 
@@ -80,7 +80,7 @@ Before embarking on more complex machine learning models, it's a good idea to bu
 
 - Use [`select()`](https://dplyr.tidyverse.org/reference/select.html) to deselect the two columns `Model` and `Model Index` from the model; these columns tell us the individual identifiers for each car and it would *not* make sense to include them in modeling. 
 - Fit `MPG` as the predicted quantity, explained by all the predictors, i.e., `.` in the R formula input to `lm()`. (You may have noticed the log distribution of MPG in the last exercise, but don't worry about fitting the logarithm of fuel efficiency yet.) 
-- Print the summary of the model.
+- Print the `summary()` of the model.
 
 <codeblock id="01_04">
 
@@ -150,18 +150,18 @@ For a random forest model, use the function `rand_forest()`.
 
 <exercise id="8" title="Evaluate your models">
 
-The `fit_lm` and `fit_rf` models you just trained are in your environment. It's time to evaluate them! 🤩 For regression models, we will focus on evaluating using the **root mean squared error**. This quantity is measured in the same units as the original data (log of miles per gallon, in our case). Lower values indicate a better fit to the data. It's not too hard to calculate root mean squared error manually, but the [yardstick](https://tidymodels.github.io/yardstick/) package offers convenient functions for this and other model performance metrics.
+The `fit_lm` and `fit_rf` models you just trained are in your environment. It's time to evaluate them! 🤩 For regression models, we will focus on evaluating using the **root mean squared error**. This quantity is measured in the same units as the original data (log of miles per gallon, in our case). Lower values indicate a better fit to the data. It's not too hard to calculate root mean squared error manually, but the [yardstick](https://tidymodels.github.io/yardstick/) package offers convenient functions for this and many other model performance metrics.
 
 **Instructions**
 
 - Load the tidymodels metapackage, to access yardstick functions. 
 - Create new columns for model predictions from each of the models you have trained, first linear regression and then random forest.
-- Evaluate the performance of these models using [`metrics()`](https://tidymodels.github.io/yardstick/reference/metrics.html) by specifying the column in the original data that contains the real fuel efficiency.
+- Evaluate the performance of these models using [`metrics()`](https://tidymodels.github.io/yardstick/reference/metrics.html) by specifying the column that contains the real fuel efficiency.
 
 <codeblock id="01_08">
 
 - Use `fit_lm` to predict the values for linear regression and `fit_rf` to predict values for random forest.
-- The "truth" column in the original data is the column that holds fuel efficiency, `MPG`.
+- The "truth" column in `results` is the column that holds fuel efficiency, `MPG`.
 
 </codeblock>
 
