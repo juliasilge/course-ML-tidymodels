@@ -1,15 +1,14 @@
-library(caret)
 library(tidyverse)
-library(yardstick)
+library(tidymodels)
 
-car_test <- readRDS("data/c1_testing_full.rds")
-cars_lm_bt <- readRDS("data/cars_lm_bt.rds")
-cars_rf_bt <- readRDS("data/cars_rf_bt.rds")
+lm_res <- readRDS("data/c1_lm_res.rds")
+rf_res <- readRDS("data/c1_rf_res.rds")
 
-results <- car_test %>%
-    ___(MPG = log(MPG),
-        `Linear regression` = predict(cars_lm_bt, car_test),
-           `Random forest` = predict(cars_rf_bt, car_test))
+results <-  bind_rows(___ %>%
+                          unnest(.predictions) %>%
+                          mutate(model = "lm"),
+                      ___ %>%
+                          unnest(.predictions) %>%
+                          mutate(model = "rf"))
 
-metrics(results, ___ = MPG, ___ = `Linear regression`)
-metrics(results, ___ = MPG, ___ = `Random forest`)
+results

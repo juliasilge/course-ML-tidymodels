@@ -8,14 +8,14 @@ type: chapter
 id: 1
 ---
 
-<exercise id="1" title="Making predictions using machine learning" type="slides">
+<exercise id="1" title="Make predictions using machine learning" type="slides">
 
 <slides source="chapter1_01">
 </slides>
 
 </exercise>
 
-<exercise id="2" title="Choosing an appropriate model">
+<exercise id="2" title="Choose an appropriate model">
 
 In this case study, you will predict the fuel efficiency ⛽  of modern cars from characteristics of these cars, like transmission and engine displacement. Fuel efficiency is a numeric value that ranges smoothly from about 15 to 40 miles per gallon. What kind of model will you build?
 
@@ -47,7 +47,7 @@ A classification model predicts a group membership or discrete class label, not 
 
 </exercise>
 
-<exercise id="3" title="Visualizing the fuel efficiency distribution">
+<exercise id="3" title="Visualize the fuel efficiency distribution">
 
 The first step before you start modeling is to explore your data. In this course we'll practice using tidyverse functions for exploratory data analysis. Start off this case study by examining your data set and visualizing the distribution of fuel efficiency. The ggplot2 package, with functions like [`ggplot()`](https://ggplot2.tidyverse.org/reference/ggplot.html) and [`geom_histogram()`](https://ggplot2.tidyverse.org/reference/geom_histogram.html) are included in the tidyverse.
 
@@ -72,7 +72,7 @@ The first time you run a code exercise, it may take a little while for your Dock
 
 </exercise>
 
-<exercise id="4" title="Building a simple linear model">
+<exercise id="4" title="Build a simple linear model">
 
 Before embarking on more complex machine learning models, it's a good idea to build the simplest possible model to get an idea of what is going on. In this case, that means fitting a simple linear model using base R's `lm()` function.
 
@@ -119,7 +119,7 @@ Creating training/testing splits reduces overfitting. When you evaluate your mod
 
 </exercise>
 
-<exercise id="7" title="Training models with tidymodels">
+<exercise id="7" title="Train models with tidymodels">
 
 Now that your `car_train` data is ready, you can fit a set of models with tidymodels. When we model data, we deal with model **type** (such as linear regression or random forest), **mode** (regression or classification), and model **engine** (how the models are actually fit). In tidymodels, we capture that modeling information in a model specification, so setting up your model specification can be a good place to start. In these exercises, fit one linear regression model and one random forest model, without any resampling of your data.
 
@@ -148,7 +148,7 @@ For a random forest model, use the function `rand_forest()`.
 
 </exercise>
 
-<exercise id="8" title="Evaluating your models">
+<exercise id="8" title="Evaluate your models">
 
 The `fit_lm` and `fit_rf` models you just trained are in your environment. It's time to evaluate them! 🤩 For regression models, we will focus on evaluating using the **root mean squared error**. This quantity is measured in the same units as the original data (log of miles per gallon, in our case). Lower values indicate a better fit to the data. It's not too hard to calculate root mean squared error manually, but the [yardstick](https://tidymodels.github.io/yardstick/) package offers convenient functions for this and other model performance metrics.
 
@@ -167,7 +167,7 @@ The `fit_lm` and `fit_rf` models you just trained are in your environment. It's 
 
 </exercise>
 
-<exercise id="9" title="Using the testing data">
+<exercise id="9" title="Use the testing data">
 
 "But wait!" you say, because you have been paying attention. 🤔 "That is how these models perform on the *training* data, the data that we used to build these models in the first place." Let's evaluate how these simple models perform on the testing data.
 
@@ -192,39 +192,39 @@ Where you had `car_train` before, switch out to `car_test`.
 
 <exercise id="11" title="Bootstrap resampling">
 
-In the last set of exercises, you trained linear regression and random forest models without any resampling. Resampling can improve the accuracy of machine learning models, and reduce overfitting.
+In the last set of exercises, you trained linear regression and random forest models without any resampling. Resampling can help us evaluate our machine learning models more accurately.
 
-Let's try bootstrap resampling, which means creating data sets the same size as the original one by randomly drawing with replacement from the original. In caret, the default behavior for bootstrapping is 25 resamplings, but you can change this using [`trainControl()`](https://topepo.github.io/caret/model-training-and-tuning.html#tune) if desired.
+Let's try bootstrap resampling, which means creating data sets the same size as the original one by randomly drawing with replacement from the original. In tidymodels, the default behavior for bootstrapping is 25 resamplings, but you can change this using the `times` argument in [`bootstraps()`](https://tidymodels.github.io/rsample/reference/bootstraps.html) if desired.
 
 **Instructions**
 
-The data sets available in your environment are 10% of their original size, to allow the code in this exercise to evaluate quickly. (This means you may see some warnings, such as about rank-deficient fits.)
+The data set available in your environment is 10% of its original size, to allow the code in this exercise to evaluate quickly. (This means you will see some warnings, such as about rank-deficient fits.)
 
-- Which data set should you train these models with, `car_train` or `car_test`?
-- Train these models using bootstrap resampling. The method for this is `"boot"`.
+- Create bootstrap resamples to evaluate these models. The function to create this kind of resample is `bootstraps()`.
+- Evaluate both kinds of models, the linear regression model and the random forest model.
 
 <codeblock id="01_11">
 
-You should still use the training data, `car_train`, for training these models.
+First evaluate `lm_mod`, and then evaluate `rf_mod`.
 
 </codeblock>
 
 </exercise>
 
-<exercise id="12" title="Plotting modeling results">
+<exercise id="12" title="Plot modeling results">
 
-You just trained models using bootstrap resampling, `cars_lm_bt` and `cars_rf_bt`. These models are available in your environment, trained on the entire training set instead of 10% only. Now let's evaluate how those models performed and compare them. We will again use `metrics()` from the yardstick package, but also we will plot the model predictions to inspect them visually.
+You just trained models on bootstrap resamples of the training set and now have the results in `lm_res` and `rf_res`. These results are available in your environment, trained using the entire training set instead of 10% only. Now let's compare them. 
 
-Notice in this code how we use [`gather()`](https://tidyr.tidyverse.org/reference/gather.html) from tidyr (another tidyverse package) to tidy the data frame and prepare it for plotting with ggplot2.
+Notice in this code how we use [`bind_rows()`](https://dplyr.tidyverse.org/reference/bind.html) from dplyr to combine the results from both models, along with [`unnest()`](https://tidyr.tidyverse.org/reference/unnest.html) from tidyr to make each prediction from each resample on its own row.
 
 **Instructions**
 
-- Use [`mutate()`](https://dplyr.tidyverse.org/reference/mutate.html) to create the new columns with the predictions from the two models you trained.
-- Choose which columns should be specified as `truth` and which should be `estimate` when calling `metrics()`.
+- First `unnest()` the results for the linear model.
+- Then `unnest()` the results for the random forest model.
 
 <codeblock id="01_12_1">
 
-Specify the `MPG` column as `truth` and the column created from the prediction (either `Linear regression` or `Random forest`) as `estimate`.
+The two sets of results are available in `lm_res` and `rf_res`.
 
 </codeblock>
 
