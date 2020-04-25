@@ -46,7 +46,7 @@ This approach does take longer, obviously, than fitting on the data one time. In
 # Bootstrap resampling with tidymodels
 
 ```r
-> bootstraps(car_train)
+bootstraps(car_train)
 ```
 
 ```out
@@ -74,12 +74,12 @@ Notes: I am very happy to be able to tell you that creating resamples is not too
 # Evaluating models with resampling
 
 ```r
-> lm_mod %>%
-+     fit_resamples(
-+         log(MPG) ~ .,
-+         car_boot,
-+         control = control_resamples(save_pred = TRUE)
-+     )
+lm_mod %>%
+    fit_resamples(
+        log(MPG) ~ .,
+        car_boot,
+        control = control_resamples(save_pred = TRUE)
+    )
 ```
 
 Notes: Once you have created a set of resamples, you can use the function `fit_resamples()` to fit a model to each resample and compute performance metrics for each. The code on this slide shows how to fit our model specification `lm_mod` to the 25 bootstrap resamples in `car_boot`; this will fit the model 25 times and determine how well the model performed each time. The fitted models themselves are just thrown away and not stored in the output, because they are only used for computing performance metrics. 

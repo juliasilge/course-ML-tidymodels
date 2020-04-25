@@ -15,7 +15,7 @@ id: 2
 
 </exercise>
 
-<exercise id="2" title="Choosing an appropriate model">
+<exercise id="2" title="Choose an appropriate model">
 
 In this case study, you will predict whether a developer works remotely or not (i.e., in their company offices) from characteristics of these developers, like experience and size of the company. In this analysis, we will assume that a software developer can either work remotely, or not. What kind of model will you build?
 
@@ -47,7 +47,7 @@ A regression model predicts a numeric/continuous value or response, not a group 
 
 </exercise>
 
-<exercise id="3" title="Exploring the Stack Overflow survey">
+<exercise id="3" title="Explore the Stack Overflow survey">
 
 Anytime you are planning to implement modeling, it is always a good idea to explore your dataset. Start off this modeling analysis by checking out how many remote and non-remote developers you have to work with, where they live, and how much experience they have.
 
@@ -105,49 +105,61 @@ Use the output of `initial_split()` as the input of `training()` and `testing()`
 
 </exercise>
 
+<exercise id="6" title="Preprocess with a recipe">
 
-<exercise id="7" title="Upsampling">
-
-There are multiple possible approaches to dealing with class imbalance. ⚖️ Here, you will implement upsampling using caret's [`upSample()`](https://topepo.github.io/caret/subsampling-for-class-imbalances.html#subsampling-techniques) function.
+There are multiple possible approaches to dealing with class imbalance. ⚖️ Here, you will implement downsampling using the [`step_downsample()`](https://tidymodels.github.io/recipes/reference/step_downsample.html) function.
 
 **Instructions**
 
-- Use the `stack_train` data set for upsampling: 
-    - `x` should use `select()` to grab only the predictors from the data.
-    - `y` should be the class memberships in `stack_train` as a vector (use `$` notation).
-    - The label for the class column goes in `yname`; remember that it is `"Remote"`.
+- Use a `recipe()` to preprocess your training data. 
+- Downsample this data with respect to the remote status of the developers.
+	
+<codeblock id="02_06">
+
+When you use `step_downsample(remote)`, you are saying "downsample my data so that the remote class is balanced".
+
+</codeblock>
+
+
+<exercise id="7" title="Downsampling">
+
+Once your recipe is defined, you can estimate the parameters required to actually preprocess the data, and then extract the processed data.
+
+**Instructions**
+
+- First, `prep()` the recipe.
+- Then, `juice()` the prepped recipe.	
 	
 <codeblock id="02_07">
 
-- The class memberships that must be assigned to `y` are `training$Remote`.
-- This function needs to also know the label for the class column, as `yname = "Remote"`.
+When you `juice()` the prepped recipe `stack_prep`, you extract the processed (i.e. balanced) data.
 
 </codeblock>
 
 </exercise>
 
-<exercise id="8" title="Understanding upsampling">
+<exercise id="8" title="Understand downsampling">
 
-Consider the original data set `stackoverflow`, the training set that you created `stack_train`, and the upsampled set you created `up_train`. Both `stackoverflow` and `stack_train` have almost 10 times as many non-remote developers as remote developers. 
+Consider the original data set `stack_overflow`, the training set that you created `stack_train`, and the downsampled set you created `stack_down`. Both `stack_overflow` and `stack_train` have almost 10 times as many non-remote developers as remote developers. 
 
-How do the remote and non-remote developers in `up_train` compare?
+How do the remote and non-remote developers in `stack_down` compare?
 
 <choice>
 <opt text="There are more remote developers.">
 
-Upsampling changes the proportion of remote and non-remote developers, but *not* so that there are more non-remote developers.
+Downsampling changes the proportion of remote and non-remote developers, but *not* so that there are more non-remote developers.
 
 </opt>
 
 <opt text="There are more non-remote developers.">
 
-Although there were more non-remote developers in the original dataset, upsampling changes this ratio so that the classes are balanced.
+Although there were more non-remote developers in the original dataset, downsampling changes this ratio so that the classes are balanced.
 
 </opt>
 
 <opt text="There are the same number of remote and non-remote developers." correct="true">
 
-Upsampling samples with replacement until the class distributions are equal, so there are the same number of remote and non-remote developers after upsampling.
+Downsampling removes from the majority class until the class distributions are equal, so there are the same number of remote and non-remote developers after downsampling.
 
 </opt>
 
@@ -155,14 +167,14 @@ Upsampling samples with replacement until the class distributions are equal, so 
 
 </exercise>
 
-<exercise id="9" title="Upsampling in your workflow">
+<exercise id="9" title="Downsampling in your workflow">
 
-We are starting to add more steps into the machine learning workflow. Think about when we implemented upsampling to deal with class imbalance. Which data set did we upsample?
+We are starting to add more steps into the machine learning workflow. Think about when we implemented downsampling to deal with class imbalance. Which data set did we upsample?
 
 <choice>
 <opt text="The original data.">
 
-We used upsampling only on a subset of the data, because its purpose is only applicable for part of the predictive modeling workflow. Does upsampling help you do a better job of training your model or testing your model?
+We used downsampling only on a subset of the data, because its purpose is only applicable for part of the predictive modeling workflow. Does downsampling help you do a better job of training your model or testing your model?
 
 </opt>
 
@@ -176,9 +188,9 @@ We used upsampling only on a subset of the data, because its purpose is only app
 
 We do not want to artificially balance the test set; the test set needs to be close to what we will see when applying our model on new data.
 
-<opt text="It doesn't matter! We'll upsample it all eventually anyway.">
+<opt text="It doesn't matter! We'll downsample it all eventually anyway.">
 
-We do not upsample all subsets of our data, because we do not want to artificially balance the test set.
+We do not downsample all subsets of our data, because we do not want to artificially balance the test set.
 
 </opt>
 
@@ -193,7 +205,7 @@ We do not upsample all subsets of our data, because we do not want to artificial
 
 </exercise>
 
-<exercise id="11" title="Training models">
+<exercise id="11" title="Train models">
 
 Finally! 😁 It's time to train predictive models for this data set of Stack Overflow Developer Survey responses. We will continue to use the powerful, flexible [`train()`](https://topepo.github.io/caret/model-training-and-tuning.html#model-training-and-parameter-tuning) function from caret to specify our machine learning models.
 

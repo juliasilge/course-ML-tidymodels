@@ -18,8 +18,7 @@ Notes: Stack Overflow is the world's largest, most trusted online community for 
 
 # Stack Overflow Developer Survey
 
-```
-> stack_overflow
+```out
 # A tibble: 6,991 x 22
    respondent country salary years_coded_job open_source hobby company_size_nu… remote
         <dbl> <chr>    <dbl>           <dbl> <lgl>       <lgl>            <dbl> <fct> 
@@ -62,8 +61,8 @@ Notes: The specific question we are going to address is what makes a developer m
 # Class imbalance ⚖️
 
 ```r
-> stack_overflow %>% 
-+         count(remote)
+stack_overflow %>% 
+    count(remote)
 ```
 
 ```out

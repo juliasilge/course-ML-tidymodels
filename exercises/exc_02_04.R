@@ -7,7 +7,7 @@ library(___)
 
 # Create stack_select dataset
 stack_select <- stack_overflow %>%
-    select(-Respondent)
+    select(-respondent)
 
 # Split the data into training and testing sets
 set.seed(1234)

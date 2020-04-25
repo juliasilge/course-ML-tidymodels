@@ -1,21 +1,7 @@
 library(tidyverse)
-stackoverflow <- read_csv("data/stackoverflow.csv") %>%
-    mutate(Remote = factor(Remote, levels = c("Remote", "Not remote")))
+library(tidymodels)
 
-# Load rsample
-library(___)
+stack_train <- readRDS("data/c2_training.rds")
 
-# Create stack_select dataset
-stack_select <- stackoverflow %>%
-    select(-Respondent)
-
-# Split the data into training and testing sets
-set.seed(1234)
-stack_split <- stack_select %>%
-    initial_split(___,
-                  strata = "___")
-
-stack_train <- training(___)
-stack_test <- testing(___)
-
-
+stack_recipe <- ___(remote ~ ., data = stack_train) %>% 
+    step_downsample(___)
