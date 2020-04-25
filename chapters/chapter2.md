@@ -53,12 +53,12 @@ Anytime you are planning to implement modeling, it is always a good idea to expl
 
 **Instructions**
 
-- Print the `stackoverflow` object.
+- Take a look at the `stack_overflow` object.
 - In the calls to [`count()`](https://dplyr.tidyverse.org/reference/tally.html), check out the distributions for remote status first, and then country.
 
 <codeblock id="02_03_1">
 
-To see how many developers work remotely and do *not* work remotely, use `count(Remote, sort = TRUE)`.
+To see how many developers work remotely and do *not* work remotely, use `count(remote, sort = TRUE)`.
 
 </codeblock>
 
@@ -68,30 +68,33 @@ Use the appropriate column from the data set so you can plot a boxplot with remo
 
 <codeblock id="02_03_2">
 
-The column `Remote` contains the remote status of each developer while the `YearsCodedJob` column contains how many years of experience each developer has.
+The column `remote` contains the remote status of each developer while the `years_coded_job` column contains how many years of experience each developer has.
 
 </codeblock>
 
 </exercise>
 
-<exercise id="4" title="Start with a simple model">
+<exercise id="4" title="Training and testing data">
 
-Before starting the process of building machine learning models, let's start by building an extremely simple model to get our bearings. This is not a model you would probably want to use to make predictions on new data, but it can give you an idea about how successful you may eventually be and which predictors are most important.
-
-Recall that when you use the pipe operator `%>%` with a function like [`glm()`](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/glm.html) (whose first argument is not `data`), you must specify `data = .` to indicate that you are piping in the modeling data set.
+Before you deal with the imbalance in the remote/not remote classes, first split your data into training and testing sets. You create subsets of your data for *training* and *testing* your model for the same reasons you did before: to reduce overfitting and obtain a more accurate estimate for how your model will perform on new data.
 
 **Instructions**
 
-Build a simple logistic regression model predicting remote status.
+Create a data split that divides the original data into 80%/20% sections and about evenly divides the sections between the different classes of `remote`.
 
-- Use `select()` to deselect the column `Respondent` from the data set before using it in modeling.
-- Fit `Remote` as the predicted quantity, explained by all the predictors, i.e., `.` in the R formula input to `glm()`. Don't get confused with the two instances of `.`!
+- Load the `tidymodels` metapackage.
+- Create `stack_split`:
+    - For the first argument to [`initial_split()`](https://tidymodels.github.io/rsample/reference/initial_split.html), use a value for `p` of 0.8.
+    - For the second argument to `initial_split()`, pass the name of the variable that contains remote status.
+- Assign the 80% partition to `stack_train` and the 20% partition to `stack_test`.
 
 <codeblock id="02_04">
 
-To fit a logistic regression model using the pipe operator `%>%`, specify your model as `glm(Remote ~ ., family = "binomial", data = .)`. The first `.` here means that we want to predict `Remote` based on *all* the other columns in the data set, while the second `.` means that we have piped in the data set to the call to `glm()`.
+Use the output of `initial_split()` as the input of `training()` and `testing()`.
 
 </codeblock>
+
+</exercise>
 
 </exercise>
 
@@ -102,27 +105,6 @@ To fit a logistic regression model using the pipe operator `%>%`, specify your m
 
 </exercise>
 
-<exercise id="6" title="Training and testing data">
-
-Before you deal with the imbalance in the remote/not remote classes, first split your data into training and testing sets. You create subsets of your data for *training* and *testing* your model for the same reasons you did before: to reduce overfitting and obtain a more accurate estimate for how your model will perform on new data.
-
-**Instructions**
-
-Create a data split that divides the original data into 80%/20% sections and about evenly divides the sections between the different classes of `Remote`.
-
-- Load the `rsample` package.
-- Create `stack_split`:
-    - For the first argument to [`initial_split()`](https://tidymodels.github.io/rsample/reference/initial_split.html), use a value for `p` of 0.8.
-    - For the second argument to `initial_split()`, pass the name of the variable that contains remote status as a string.
-- Assign the 80% partition to `stack_train` and the 20% partition to `stack_test`.
-
-<codeblock id="02_06">
-
-Use the output of `initial_split()` as the input of `training()` and `testing()`.
-
-</codeblock>
-
-</exercise>
 
 <exercise id="7" title="Upsampling">
 
