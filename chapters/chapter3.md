@@ -120,19 +120,19 @@ We can tell whether our data is imbalanced by examining the data set and noticin
 
 </exercise>
 
-<exercise id="6" title="Fit a simple model">
+<exercise id="6" title="Training and testing data">
 
-Start off a predictive modeling project by building the simplest possible model, to learn about the data and questions you are dealing with. Here, you will fit a simple logistic regression model on the whole data set to get an idea of what is going on.
+It's time to split your data into training and testing sets, in the same way that you created these subsets in the previous case studies. You want to split your data about evenly on the class `turnout16_2016`.
 
 **Instructions**
 
-- Use [`select()`](https://dplyr.tidyverse.org/reference/select.html) to remove the column `case_identifier` from `voters` and assign it to `voters_select`. 
-- Fit a logistic regression model to predict `turnout16_2016` explained by all the other variables in `voters_select`.
+- Load the tidymodels metapackage, for using the functions to split your data.
+- Use the correct function to create a data split that divides `voters_select` into 80%/20% sections.
+- Assign the 80% partition to `vote_train` and the 20% partition to `vote_test`.
 
 <codeblock id="03_06">
 
-- The formula for your model should be `turnout16_2016 ~ .` . 
-- To fit a logistic regression model, use `family = "binomial"`.
+The `initial_split()` function sets up the data partitioning, and then you can use that as input to call `training()` and `testing()`.
 
 </codeblock>
 
