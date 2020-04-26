@@ -208,27 +208,31 @@ We do not downsample all subsets of our data, because we do not want to artifici
 
 <exercise id="11" title="Train models">
 
-Finally! 😁 It's time to train predictive models for this data set of Stack Overflow Developer Survey responses. We will continue to use the powerful, flexible [`train()`](https://topepo.github.io/caret/model-training-and-tuning.html#model-training-and-parameter-tuning) function from caret to specify our machine learning models.
-
-To keep the code in this exercise evaluating quickly, the data sets in your environment are 1% of their original size. (This means you may see some warnings due to the subsampling.)
+Finally! 😁 It's time to train predictive models for this data set of Stack Overflow Developer Survey responses. We will specify our machine learning models with parsnip, and use [workflows](https://tidymodels.github.io/workflows/) for convenience.
 
 **Instructions**
 
-Build a logistic regression model using `method = "glm"` and `family = "binomial"` while implementing upsampling to address class imbalance.
+- Specify a logistic regression model using `logistic_reg()`.
+- Build a `workflow()` to hold your modeling components.
+- Add your model specification to your `workflow()` before fitting.
 
 <codeblock id="02_11_1">
 
-To upsample the training set within the call to `train()`, use `sampling = "up"` inside of `trainControl()`.
+You can add your model specification to your `workflow()` by piping `stack_wf %>% add_model(glm_spec)`.
 
 </codeblock>
 
 **Instructions**
 
-Build a random forest model while implementing upsampling to address class imbalance.
+Build a decision tree model with downsampling.
+
+- Specify a decision tree regression model using `decision_tree()`.
+- Add your recipe `stack_recipe` to your `workflow()`.
+- Fit your workflow, after you have added your model to it.
 
 <codeblock id="02_11_2">
 
-Use `method = "rf"` to build a random forest model.
+A workflow needs both a preprocessor (such as a recipe or formula) and a model to be fit.
 
 </codeblock>
 
@@ -238,7 +242,7 @@ Use `method = "rf"` to build a random forest model.
 
 A confusion matrix describes how well a classification model (like the ones you just trained!) performs. A confusion matrix tabulates how many examples in each class were correctly classified by a model. In your case, it will show you how many remote developers were classified as remote and how many non-remote developers were classified as non-remote; the confusion matrix also shows you how many were classified into the **wrong** categories.
 
-Here you will use the [`conf_mat()`](https://tidymodels.github.io/yardstick/reference/conf_mat.html) function from yardstick to evaluate the performance of the two models you trained, `stack_glm` and `stack_rf`. The models available in your environment were trained on all the training data, not only 1%.
+Here you will use the [`conf_mat()`](https://tidymodels.github.io/yardstick/reference/conf_mat.html) function from yardstick to evaluate the performance of the two models you trained, `stack_glm` and `stack_tree`. The models available in your environment were trained on the training data.
 
 **Instructions**
 
@@ -246,13 +250,13 @@ Print the confusion matrix for the `stack_glm` model on the `stack_test` data. N
 
 <codeblock id="02_12_1">
 
-You are evaluating your models, so you should use the testing data set for all the possible arguments here.
+Use the arguments `truth = remote` and `estimate = .pred_glm`.
 
 </codeblock>
 
 **Instructions**
 
-Print the confusion matrix for the `stack_rf` model on the `stack_test` data.
+Print the confusion matrix for the `stack_tree` model on the `stack_test` data.
 
 <codeblock id="02_12_2">
 
@@ -266,12 +270,11 @@ Use the `conf_mat()` function to build a confusion matrix.
 
 The `conf_mat()` function is helpful but often you also want to store specific performance estimates for later, perhaps in a dataframe-friendly form. The yardstick package is built to handle such needs. For this kind of classification model, you might look at the [positive or negative predictive value](https://tidymodels.github.io/yardstick/reference/ppv.html) or perhaps overall [accuracy](https://tidymodels.github.io/yardstick/reference/accuracy.html).
 
-The models available in your environment, `stack_glm` and `stack_rf` were trained on all the training data, not only 1%.
+The models available in your environment, `stack_glm` and `stack_tree` were trained on the training data.
 
 **Instructions**
 
-- Load the yardstick package. 
-- Predict values for logistic regression (`stack_glm`) and random forest (`stack_rf`).  
+- Predict values for logistic regression (`stack_glm`) and decision tree (`stack_tree`).  
 - Calculate both accuracy and positive predictive value for these two models.
 	
 <codeblock id="02_13">

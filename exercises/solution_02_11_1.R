@@ -1,13 +1,23 @@
 library(tidyverse)
-library(caret)
+library(tidymodels)
 
-stack_train <- readRDS("data/c2_training_one_percent.rds")
+stack_train <- readRDS("data/c2_training.rds")
+
+stack_recipe <- recipe(remote ~ ., data = stack_train) %>% 
+    step_downsample(remote)
 
 # Build a logistic regression model
-stack_glm <- train(Remote ~ ., method = "glm", family = "binomial",
-                   data = stack_train,
-                   trControl = trainControl(method = "boot",
-                                            sampling = "up"))
+glm_spec <- logistic_reg() %>%
+    set_engine("glm")
 
-# Print the model object
+## Start a workflow (recipe only)
+stack_wf <- workflow() %>%
+    add_recipe(stack_recipe)
+
+## Add the model and fit the workflow
+stack_glm <- stack_wf %>%
+    add_model(glm_spec) %>%
+    fit(data = stack_train)
+
+# Print the fitted model
 stack_glm

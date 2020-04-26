@@ -44,7 +44,9 @@ Notes: This is in fact what happens with our dataset here (I know because I test
 - Remove some of the majority class so it has less effect on the predictive model
 - Randomly remove examples from the majority class until it is the same size as the minority class
 
-Notes: In this case study, we're going to implement **downsampling**, also known as undersampling. With this approach, we randomly remove observations from the majority class until it's the same size as the minority class and both classes can have the same effect on the machine learning model we're training. Are we really going to throw out a large percentage of our data here?! 😱 Yes! Because such an approach can be helpful at producing a useful model that can recognize both classes, instead of only one.
+Notes: In this case study, we're going to implement **downsampling**, also known as undersampling. With this approach, we randomly remove observations from the majority class until it's the same size as the minority class and both classes can have the same effect on the machine learning model we're training. 
+
+Are we really going to throw out a large percentage of our data here?! 😱 Yes! We do this because such an approach can be helpful at producing a useful model that can recognize both classes, instead of only one.
 
 ---
 
@@ -57,7 +59,7 @@ Notes: In our case study, there are roughly ten times more non-remote developers
 
 ![](https://github.com/juliasilge/course-ML-tidymodels/blob/master/img/downsample2.png?raw=true)
 
-Notes: When we implement downsampling, we remove some of the non-remote developers until the proportion is equal, until the classes are balanced. This approach is simple to implement and understand, but there are other more complex approaches to class imbalance available as well.
+Notes: When we implement downsampling, we remove some of the non-remote developers until the proportion is equal and the classes are balanced. This approach is simple to implement and understand, but there are other more complex approaches to class imbalance available as well.
 
 ---
 
@@ -101,7 +103,9 @@ juice(stack_prep)
 #   systems_administrator <lgl>, web_developer <lgl>, remote <fct>
 ```
 
-Notes: When you [`prep()`](https://tidymodels.github.io/recipes/reference/prep.html) a recipe, you estimate the required parameters from a data set for the preprocessing steps in that recipe (think about finding the mean and standard deviation if you are centering and scaling). When you [`juice()`](https://tidymodels.github.io/recipes/reference/juice.html) a prepped a recipe, you get the preprocessed data back out. 
+Notes: When you [`prep()`](https://tidymodels.github.io/recipes/reference/prep.html) a recipe, you estimate the required parameters from a data set for the preprocessing steps in that recipe (as an example, think about finding the mean and standard deviation if you are centering and scaling). 
+
+When you [`juice()`](https://tidymodels.github.io/recipes/reference/juice.html) a prepped recipe, you get the preprocessed data back out. 
 
 ---
 
