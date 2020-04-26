@@ -15,7 +15,7 @@ id: 3
 
 </exercise>
 
-<exercise id="2" title="Choosing an appropriate model">
+<exercise id="2" title="Choose an appropriate model">
 
 In this case study, you will predict whether a person voted or not in the United States 2016 presidential election from responses that person gave on a survey. The survey focuses on opinions about political and economic topics. What kind of model will you build?
 
@@ -47,14 +47,14 @@ A regression model predicts a numeric/continuous value or response, not a group 
 
 </exercise>
 
-<exercise id="3" title="Exploring the VOTER data">
+<exercise id="3" title="Explore the VOTER data">
 
 To do a good job with predictive modeling, you need to explore your dataset to understand it first. Start off this modeling analysis by checking out how many people voted or did not vote, and the answers to a few questions. The answers to the questions on this survey have been coded as integers, and the corresponding text has been provided for you here.
  
 **Instructions**
 
 - Load [tidyverse](https://tidyverse.tidyverse.org/).
-- Print `voters` to check out the data.
+- Take a look at `voters` to check out the data.
 - In the call to `count()`, use the appropriate variable (`turnout16_2016`) to see how many examples you have of those who voted and did not vote.
 
 <codeblock id="03_03_1">
@@ -145,35 +145,36 @@ The `initial_split()` function sets up the data partitioning, and then you can u
 
 </exercise>
 
-<exercise id="8" title="Training and testing data">
+<exercise id="8" title="Preprocess with a recipe">
 
-It's time to split your data into training and testing sets, in the same way that you created these subsets in the previous case studies. You want to split your data about evenly on the class `turnout16_2016`.
+This dataset needs to prepared for modeling.
 
 **Instructions**
 
-- Load the rsample package, for using the functions to split your data.
-- Use the correct function to create a data split that divides `voters_select` into 80%/20% sections.
-- Assign the 80% partition to `vote_train` and the 20% partition to `vote_test`.
+- Use a `recipe()` to preprocess your training data, `vote_train`.
+- Upsample this training data with the function `step_upsample()`.
+- Center and scale this training data with the function `step_normalize()`.
 
 <codeblock id="03_08">
 
-The `initial_split()` function sets up the data partitioning, and then you can use that as input to call `training()` and `testing()`.
+When you set up a recipe with `recipe(turnout16_2016 ~ ., data = vote_train)`, you are specifying what steps should be applied to your data to get it ready for data analysis.
 
 </codeblock>
 
 </exercise>
 
-<exercise id="9" title="Upsampling for imbalanced data">
+<exercise id="9" title="Create a modeling workflow">
 
-It's time to start training your predictive models using caret's [train()](https://topepo.github.io/caret/model-training-and-tuning.html#model-training-and-parameter-tuning) function. This survey data set is imbalanced, with many more examples of people who said they voted than people who did not. To build a model that performs better, you should deal with this class imbalance. In this exercise, use upsampling, the same approach we used in the last case study.
+In this case study, we'll experiment with a new kind of model, a k-nearest neighbor model that you can specify using `nearest_neighbor()`. This kind of model is sensitive to scaling, which is why we included `step_normalize()` in our recipe. You can combine the model with your preprocessing steps (your recipe) in a [workflow()](https://tidymodels.github.io/workflows/) for convenience.
 
 **Instructions**
 
-Build a logistic regression model with no resampling of data, but add the specification for upsampling. If you can't remember, learn more about [`trainControl()`](https://topepo.github.io/caret/model-training-and-tuning.html#control).
+- Use `nearest_neighbor()` to specify a k-nearest neighborh model.
+- Add the recipe and the model specification to the workflow.
 
 <codeblock id="03_09">
 
-To upsample the training set within the call to `train()`, use `sampling = "up"` inside `trainControl()`.
+You add a recipe with `add_recipe()` and you add a model specification with `add_model()`.
 
 </codeblock>
 
@@ -191,19 +192,19 @@ To upsample the training set within the call to `train()`, use `sampling = "up"`
 When you implement 10-fold cross-validation repeated 5 times, you...
 
 <choice>
-<opt text="randomly divide your training data into 50 subsets and train on 49 at a time (validating on the other subset), iterating through all 50 subsets for validation.">
+<opt text="randomly divide your training data into 50 subsets and train on 49 at a time (assessing on the other subset), iterating through all 50 subsets for assessment.">
 
 If you divide your data into 50 subsets, that would be called 50-fold cross-validation. For most practical situations, 50 folds is overkill.
 
 </opt>
 
-<opt text="randomly divide your training data into 10 subsets and train on 9 at a time (validating on the other subset), iterating through all 10 subsets for validation. Then you repeat that process 5 times." correct="true">
+<opt text="randomly divide your training data into 10 subsets and train on 9 at a time (assessing on the other subset), iterating through all 10 subsets for assessment. Then you repeat that process 5 times." correct="true">
 
-⚡️ Simulations and practical experience show that 10-fold cross-validation repeated 5 times is a great resampling approach for many situations. This approach involves randomly dividing your training data into 10 folds, or subsets or groups, and training on only 9 while using the other fold for validation. You iterate through all 10 folds being used for validation; this is one round of cross-validation. You can then repeat the whole process multiple, perhaps 5, times.
+⚡️ Simulations and practical experience show that 10-fold cross-validation repeated 5 times is a great resampling approach for many situations. This approach involves randomly dividing your training data into 10 folds, or subsets or groups, and training on only 9 while using the other fold for assessment. You iterate through all 10 folds being used for assessment; this is one round of cross-validation. You can then repeat the whole process multiple, perhaps 5, times.
 
 </opt>
 
-<opt text="randomly divide your training data into 5 subsets and train on 4 at a time (validating on the other subset), iterating through all 5 subsets. Then you repeat that process 10 times.">
+<opt text="randomly divide your training data into 5 subsets and train on 4 at a time (assessing on the other subset), iterating through all 5 subsets. Then you repeat that process 10 times.">
 
 If you divide your data into 5 subsets, that would be called 5-fold cross-validation. In many practical situations, 5 folds is not enough to get the maximum performance improvement possible.
 

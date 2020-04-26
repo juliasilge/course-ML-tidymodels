@@ -6,7 +6,7 @@ stack_train <- readRDS("data/c2_training.rds")
 stack_recipe <- recipe(remote ~ ., data = stack_train) %>% 
     step_downsample(remote)
 
-# Build a decision tree model
+## Build a decision tree model
 tree_spec <- decision_tree() %>%         
     set_engine("rpart") %>%      
     set_mode("classification") 

@@ -42,7 +42,9 @@ Notes: This is another case study with imbalanced data. We are again going to pr
 
 ![](https://github.com/juliasilge/course-ML-tidymodels/blob/master/img/upsample2.png?raw=true)
 
-Notes: When we implement upsampling, we add more of the remote developers (just more of the same ones we already have) until the proportion is equal and the classes are balanced. We are going to use [`step_upsample()`](https://tidymodels.github.io/recipes/reference/step_upsample.html) for oversampling because it is simple to implement and understand, but it can lead a classifier to overfit to just a few examples, if you're not lucky. There are other more complex approaches to oversampling available in the [themis](https://tidymodels.github.io/themis/) package, but we will focus on random upsampling with replacement here.
+Notes: When we implement upsampling, we add more of the remote developers (just more of the same ones we already have) until the proportion is equal and the classes are balanced. 
+
+We are going to use [`step_upsample()`](https://tidymodels.github.io/recipes/reference/step_upsample.html) for oversampling because it is simple to implement and understand, but it can lead a classifier to overfit to just a few examples, if you're not lucky. There are other more complex approaches to oversampling available in the [themis](https://tidymodels.github.io/themis/) package, but we will focus on random upsampling with replacement here.
 
 ---
 
@@ -54,7 +56,7 @@ vote_recipe <- recipe(turnout16_2016 ~ ., data = vote_train) %>%
     step_normalize(all_numeric())
 ```
 
-Notes: Upsampling is another example of a preprocessing step for modeling. You can again preprocess your data using [recipes](https://tidymodels.github.io/recipes/). The recipe shown in this slide only has two preprocessing steps:
+Notes: Upsampling is another example of a preprocessing step for modeling. You can again preprocess your data using [recipes](https://tidymodels.github.io/recipes/). The recipe shown in this slide has two preprocessing steps:
 
 - Downsampling, to take care of the class imbalance in the turnout outcome
 - "Normalizing", which means centering and scaling all the numeric variables
@@ -90,7 +92,7 @@ K-Nearest Neighbor Model Specification (unknown)
 Computational engine: kknn 
 ```
 
-Notes: To put our recipe and our model together, let's use a [`workflow()`](https://tidymodels.github.io/workflows/). We can fit our workflow much like we would fit a model.
+Notes: To put our recipe and our model specification together, let's use a [`workflow()`](https://tidymodels.github.io/workflows/). We can fit our workflow much like we would fit a model.
 
 ---
 

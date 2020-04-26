@@ -6,7 +6,7 @@ stack_train <- readRDS("data/c2_training.rds")
 stack_recipe <- recipe(remote ~ ., data = stack_train) %>% 
     step_downsample(remote)
 
-# Build a logistic regression model
+## Build a logistic regression model
 glm_spec <- logistic_reg() %>%
     set_engine("glm")
 

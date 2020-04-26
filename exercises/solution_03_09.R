@@ -1,11 +1,19 @@
 library(tidyverse)
-library(caret)
+library(tidymodels)
 
-vote_train <- readRDS("data/c3_training_full.rds")
+stack_train <- readRDS("data/c3_training.rds")
 
-# Perform logistic regression with upsampling and no resampling
-vote_glm <- train(turnout16_2016 ~ ., 
-                  method = "glm", family = "binomial",
-                  data = vote_train,
-                  trControl = trainControl(method = "none",
-                                           sampling = "up"))
+vote_recipe <- recipe(turnout16_2016 ~ ., data = vote_train) %>% 
+    step_upsample(turnout16_2016) %>%
+    step_normalize(all_numeric())
+
+## Specify a k-nearest neighbor model
+knn_spec <- nearest_neighbor() %>%
+    set_engine("kknn")
+
+## Add the recipe + model to a workflow
+vote_wf <- workflow() %>%
+    add_recipe(vote_recipe) %>%
+    add_model(knn_spec)
+
+vote_wf
