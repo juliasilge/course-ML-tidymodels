@@ -15,7 +15,7 @@ Notes: Now that you have understood and implemented downsampling, or undersampli
 - Logistic regression
 - Decision tree
 
-Notes: Unlike the first case study, when you built regression models to predict a numeric or continuous variable, in this case study you are going to build classification models, to predict the class: **remote** or **not remote**. We are going to stick with two methods to understand and implement classification models, logistic regression and random forest. 
+Notes: Unlike the first case study, when you built regression models to predict a numeric or continuous variable, in this case study you are going to build classification models, to predict the class: **remote** or **not remote**. We are going to stick with two methods to understand and implement classification models, logistic regression and a decision tree. 
 
 There are lots of other options, and one of the great characteristics of using tidymodels for predictive modeling is that if you want to try something else, you can extend your work to new model types within the same framework. 💁
 
