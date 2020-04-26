@@ -120,6 +120,7 @@ When you use `step_downsample(remote)`, you are saying "downsample my data so th
 
 </codeblock>
 
+</exercise>
 
 <exercise id="7" title="Downsampling">
 
