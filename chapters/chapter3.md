@@ -230,37 +230,37 @@ Use argument `v = 10` and `repeats = 5` to implement 10-fold cross-validation re
 
 </exercise>
 
-<exercise id="13" title="Comparing model performance" type="slides">
+<exercise id="13" title="Evaluate model performance" type="slides">
 
 <slides source="chapter3_13">
 </slides>
 
 </exercise>
 
-<exercise id="14" title="Confusion matrix for your training data">
+<exercise id="14" title="Resampling two models">
 
-Let's start by seeing how these two models perform on your training data by looking at some confusion matrices. A confusion matrix tabulates how many examples in each class were correctly classified by a model. In this case study, it will show you how many voters were classified as voters and how many non-voters were classified as non-voters; the confusion matrix also shows you how many were classified into the wrong categories. 
+Let's use cross-validation resampling to evaluate performance for two kinds of models with this vote data. You've already learned how to create resamples, preprocess data for modeling, build a model specification, and combine this in a workflow; now it's time to put this all together and evaluate this model's performance. 
 
-Here we want to see how your model performed on the **training** data, the data the model used when it was trained. The models available in your environment were trained on all the training data, not just a subset, with 10-fold cross-validation repeated 5 times.
+The training data available in your environment is 10% of its original size, to allow the code in this exercise to evaluate quickly. (This means you may see some warnings.)
 
 **Instructions**
 
-Print the confusion matrix for the logistic regression model on the training data.
+Use `fit_resamples()` to evaluate how this logistic regression model performs on the cross-validation resamples.
 
 <codeblock id="03_14_1">
 
-- Use the `conf_mat()` function to build a confusion matrix. 
-- We aren't evaluating your models on the testing data yet, so use the `vote_train` data for all the arguments here.
+The workflow `vote_wf` contains both the recipe and the model specification, and can be fit to the resamples `vote_folds`.
 
 </codeblock>
 
 **Instructions**
 
-Print the confusion matrix for the random forest model (`vote_rf`) on the training data.
+- Now fit the resamples `vote_folds` to the random forest model.
+- Compute the metrics `roc_auc`, `sens`, and `spec`.
 
 <codeblock id="03_14_2">
 
-Use `mutate()` to make a new column of `predict`ed values.
+The function `metric_set()` takes as its arguments the metrics you want to compute.
 
 </codeblock>
 
@@ -307,13 +307,13 @@ Which model performed better on the **testing** data?
 <choice>
 <opt text="Random forest">
 
-Random forest models are very powerful and the random forest model had higher accuracy than the logistic regression model on the training data, but on the testing data, the random forest model could not identify any of the people who voted.
+Random forest models are very powerful, but the random forest model could not identify any of the people who did not vote.
 
 </opt>
 
 <opt text="Logistic regression" correct="true">
 
-Logistic regression is a simpler model, but in this case, it performed better on the testing data and you can expect it to do a better job predicting on new data.
+Logistic regression is a simpler model, but in this case, it performed better and you can expect it to do a better job predicting on new data.
 
 </opt>
 </choice>
