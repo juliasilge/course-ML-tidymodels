@@ -213,30 +213,18 @@ If you divide your data into 5 subsets, that would be called 5-fold cross-valida
 
 </exercise>
 
-<exercise id="12" title="Training models with cross-validation">
+<exercise id="12" title="Create cross-validation folds">
 
-You can build models both with the upsampling you implemented before, *and* the cross-validation we just discussed. Here, try 10-fold cross-validation repeated 2 times.
-
-To allow the code in this exercise to evaluate in a short time, the training set in your environment is 2% of the real training set. Expect to see some warnings because of this.
+You can use tidymodels functions to create the kind of cross-validation folds appropriate for your use case. Here, try 10-fold cross-validation repeated 5 times.
 
 **Instructions**
 
-- Use `method = "repeatedcv"` to implement 10-fold cross-validation (10 folds or subsets is the default, but this can be changed) for the logistic regression model.
-- Specify `repeats = 2` to repeat the 10-fold cross-validation 2 times.
+- The argument `v` specifies the number of folds for cross-validation.
+- The argument `repeats` specifies the number of repeats.
 
-<codeblock id="03_12_1">
+<codeblock id="03_12">
 
-Your call to `trainControl()` should look like `trainControl(method = "repeatedcv", repeats = 2, sampling = "up")`.
-
-</codeblock>
-
-**Instructions**
-
-Now, train a random forest model by implementing 10-fold cross validation 2 times.
-
-<codeblock id="03_12_2">
-
-Similar to the logistic regression model, you need to use the `method` and `repeats` arguments inside `trainControl()`.
+Use argument `v = 10` and `repeats = 5` to implement 10-fold cross-validation repeated 5 times.
 
 </codeblock>
 

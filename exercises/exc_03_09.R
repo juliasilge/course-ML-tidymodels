@@ -1,7 +1,7 @@
 library(tidyverse)
 library(tidymodels)
 
-stack_train <- readRDS("data/c3_training.rds")
+vote_train <- readRDS("data/c3_training.rds")
 
 vote_recipe <- recipe(turnout16_2016 ~ ., data = vote_train) %>% 
     step_upsample(turnout16_2016) %>%
@@ -9,7 +9,8 @@ vote_recipe <- recipe(turnout16_2016 ~ ., data = vote_train) %>%
 
 ## Specify a k-nearest neighbor model
 knn_spec <- ___ %>%
-    set_engine("kknn")
+    set_engine("kknn") %>%
+    set_mode("classification")
 
 ## Add the recipe + model to a workflow
 vote_wf <- workflow() %>%
