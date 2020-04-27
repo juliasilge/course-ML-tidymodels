@@ -153,11 +153,10 @@ This dataset needs to prepared for modeling.
 
 - Use a `recipe()` to preprocess your training data, `vote_train`.
 - Upsample this training data with the function `step_upsample()`.
-- Center and scale this training data with the function `step_normalize()`.
 
 <codeblock id="03_08">
 
-When you set up a recipe with `recipe(turnout16_2016 ~ ., data = vote_train)`, you are specifying what steps should be applied to your data to get it ready for data analysis.
+When you set up a recipe with `recipe(turnout16_2016 ~ ., data = vote_train)`, you are specifying that the following steps should be applied to your data to get it ready for data analysis.
 
 </codeblock>
 
@@ -165,11 +164,11 @@ When you set up a recipe with `recipe(turnout16_2016 ~ ., data = vote_train)`, y
 
 <exercise id="9" title="Create a modeling workflow">
 
-In this case study, we'll experiment with a new kind of model, a k-nearest neighbor model that you can specify using `nearest_neighbor()`. This kind of model is sensitive to scaling, which is why we included `step_normalize()` in our recipe. You can combine the model with your preprocessing steps (your recipe) in a [workflow()](https://tidymodels.github.io/workflows/) for convenience.
+In this case study, we'll experiment with a new engine for the random forest model, the ranger package. You can combine the model with your preprocessing steps (your recipe) in a [workflow()](https://tidymodels.github.io/workflows/) for convenience.
 
 **Instructions**
 
-- Use `nearest_neighbor()` to specify a k-nearest neighborh model.
+- Use `rand_forest()` to specify a random forest model. Notice that we are using a different engine than in the first case study.
 - Add the recipe and the model specification to the workflow.
 
 <codeblock id="03_09">

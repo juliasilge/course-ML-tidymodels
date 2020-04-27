@@ -42,7 +42,7 @@ Notes: This is another case study with imbalanced data. We are again going to pr
 
 ![](https://github.com/juliasilge/course-ML-tidymodels/blob/master/img/upsample2.png?raw=true)
 
-Notes: When we implement upsampling, we add more of the remote developers (just more of the same ones we already have) until the proportion is equal and the classes are balanced. 
+Notes: When we implement upsampling, we add more of the people who did not vote (just more of the same ones we already have) until the proportion is equal and the classes are balanced. 
 
 We are going to use [`step_upsample()`](https://tidymodels.github.io/recipes/reference/step_upsample.html) for oversampling because it is simple to implement and understand, but it can lead a classifier to overfit to just a few examples, if you're not lucky. There are other more complex approaches to oversampling available in the [themis](https://tidymodels.github.io/themis/) package, but we will focus on random upsampling with replacement here.
 
@@ -52,16 +52,10 @@ We are going to use [`step_upsample()`](https://tidymodels.github.io/recipes/ref
 
 ```r
 vote_recipe <- recipe(turnout16_2016 ~ ., data = vote_train) %>% 
-    step_upsample(turnout16_2016) %>%
-    step_normalize(all_numeric())
+    step_upsample(turnout16_2016)
 ```
 
-Notes: Upsampling is another example of a preprocessing step for modeling. You can again preprocess your data using [recipes](https://tidymodels.github.io/recipes/). The recipe shown in this slide has two preprocessing steps:
-
-- Downsampling, to take care of the class imbalance in the turnout outcome
-- "Normalizing", which means centering and scaling all the numeric variables
-
-We need to take that second preprocessing step because we are going to try a model that is sensitive to how numeric data is scaled.
+Notes: Upsampling is another example of a preprocessing step for modeling. You can again preprocess your data using [recipes](https://tidymodels.github.io/recipes/). The recipe shown in this slide again has just one preprocessing step (upsampling) but you can create recipes for preprocessing with as many steps as you need.
 
 ---
 
@@ -70,7 +64,7 @@ We need to take that second preprocessing step because we are going to try a mod
 ```r
 vote_wf <- workflow() %>%
     add_recipe(vote_recipe) %>%
-    add_model(knn_mod)
+    add_model(rf_spec)
 
 vote_wf
 ```
@@ -78,18 +72,17 @@ vote_wf
 ```out
 ══ Workflow ══════════════════════════════════════════════════════════════════
 Preprocessor: Recipe
-Model: nearest_neighbor()
+Model: rand_forest()
 
 ── Preprocessor ──────────────────────────────────────────────────────────────
-2 Recipe Steps
+1 Recipe Step
 
 ● step_upsample()
-● step_normalize()
 
 ── Model ─────────────────────────────────────────────────────────────────────
-K-Nearest Neighbor Model Specification (unknown)
+Random Forest Model Specification (classification)
 
-Computational engine: kknn 
+Computational engine: ranger 
 ```
 
 Notes: To put our recipe and our model specification together, let's use a [`workflow()`](https://tidymodels.github.io/workflows/). We can fit our workflow much like we would fit a model.
