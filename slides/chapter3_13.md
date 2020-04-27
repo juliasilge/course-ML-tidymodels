@@ -82,7 +82,7 @@ Prediction     Did not vote Voted
   Voted                  23   918
 ```
 
-Notes: The logistic regression model will likely be the best option, so we can evaluate its performance on the testing data. We can use the [`last_fit()`](https://tidymodels.github.io/tune/reference/last_fit.html) function with a workflow to fit to the entire training set and evluate on the testing set. You only need to give this function the **split** object!
+Notes: The logistic regression model will likely be the best option, so we can evaluate its performance on the testing data. We can use the [`last_fit()`](https://tidymodels.github.io/tune/reference/last_fit.html) function with a workflow to fit to the entire training set and evaluate on the testing set. You only need to give this function the **split** object!
 
 We can see that we did a better job identifying the people who voted than those who did not.
 

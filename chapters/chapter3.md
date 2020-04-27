@@ -266,39 +266,40 @@ The function `metric_set()` takes as its arguments the metrics you want to compu
 
 </exercise>
 
-<exercise id="15" title="Confusion matrix for your testing data">
+<exercise id="15" title="Performance metrics from resampling">
 
-Now, let's evaluate how the models perform on the testing data. This is what you use to estimate how your model will perform on new data.
-
-**Instructions**
-
-Print the confusion matrix for the logistic regression model on the training data.
-
-- Generate a confusion matrix for the logistic regression model (`vote_glm`). 
-- Instead of the `vote_train` data, now use the `vote_test` data.
-
-<codeblock id="03_15_1">
-
-- Find the predictions using `predict(vote_glm, vote_test)`.
-- Choose the real voting status for the `truth` argument to `conf_mat()`, and the predicted voting status for `estimate`. 
-
-</codeblock>
+Now, let's evaluate these results from resampling.
 
 **Instructions**
 
-- Generate a confusion matrix for the random forest model (`vote_rf`). 
-- Instead of the `vote_train` data, now use the `vote_test` data.
+Use the function `collect_metrics()` to obtain the metrics we specified from the resampling results.
 
-<codeblock id="03_15_2">
+<codeblock id="03_15">
 
-- Use `mutate()` to make the new column with predicted values.
-- Remember that `conf_mat()` is the function to find a confusion matrix.
+You can obtain the metrics from the random forest results with `collect_metrics(rf_res)`.
 
 </codeblock>
 
 </exercise>
 
-<exercise id="16" title="Which model is best?">
+<exercise id="16" title="Back to the testing data">
+
+When we used resampling to evaluate model performance, we used the **training** data. We use the testing data at the end of our modeling analysis to estimate how our model will perform on new data. Let's use the `last_fit()` function to fit to the entire training set and evaluate on the testing set, with everything we've learned during this case study.
+
+**Instructions**
+
+- Fit to the training set and evaluate on the testing set using `last_fit()`. 
+- Create a confusion matrix for the results from the testing set.
+
+<codeblock id="03_16">
+
+Remember that `conf_mat()` is the function to find a confusion matrix.
+
+</codeblock>
+
+</exercise>
+
+<exercise id="17" title="Which model is best?">
 
 You have just spent a whole chapter of this course exploring how to predict voter turnout based on survey responses. Of the two types of models you tried, which is the better choice? Which do you expect to perform better on new data?
 
@@ -307,7 +308,7 @@ Which model performed better on the **testing** data?
 <choice>
 <opt text="Random forest">
 
-Random forest models are very powerful, but the random forest model could not identify any of the people who did not vote.
+Random forest models are very powerful, but the random forest model could not identify any of the people who did _not_ vote.
 
 </opt>
 
