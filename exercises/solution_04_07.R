@@ -1,21 +1,17 @@
 library(tidyverse)
-library(rsample)
+library(tidymodels)
 sisters_select <- read_csv("data/sisters.csv") %>%
     select(-sister)
 
-# Split the data into training and validation/test sets
-train_split <- sisters_select %>%
-    initial_split(prop = 0.6,
-                  strata = "age")
+# Split off the testing set
+set.seed(123)
+sisters_split <- initial_split(sisters_select, strata = age)
 
-sisters_train <- training(train_split)
-validate_test <- testing(train_split)
+sisters_other <- training(sisters_split)
+sisters_test <- testing(sisters_split)
 
-# Split the validation and test sets
-set.seed(1234)
-validation_split <- validate_test %>%
-    initial_split(prop = 0.5,
-                  strata = "age")
+# Create the validation split
+set.seed(123)
+sisters_val <- validation_split(sisters_other, strata = age)
 
-sisters_validate <- training(validation_split)
-sisters_test <- testing(validation_split)
+sisters_val

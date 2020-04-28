@@ -127,25 +127,23 @@ In this exercise, we are using [`filter()`](https://dplyr.tidyverse.org/referenc
 
 <exercise id="7" title="Training, validation, and testing data">
 
-It's time to split your data into different sets now. You've done this three times already in this course, but in this last case study we are also going to create a validation set. Using a validation set is important anytime you will compare multiple models and choose between them, or adjust hyperparameters in a model. 
-
-We are going to split the data into 60% training, 20% validation, 20% testing.
+It's time to split your data into different sets now. You've done this three times already in this course, but in this last case study we are also going to create a validation set. Using a validation set is a good option when you have enough data (otherwise, you can use resampling). 
 
 **Instructions**
 
 - Create two data partitions: 
-    - Specify one to split between training (60%) and validation/testing (40%).
-    - Specify another one to split between validation and testing (50% each).
+    - Specify one to split between testing and everything else.
+    - Specify another one to split between validation and training.
 
 <codeblock id="04_07">
 
-The [`initial_split()`](https://tidymodels.github.io/rsample/reference/initial_split.html) function creates a vector that specifies which examples belong in the training set, or the test set.
+The [`initial_split()`](https://tidymodels.github.io/rsample/reference/initial_split.html) function splits off the testing set, and then [`validation_split()`](https://tidymodels.github.io/rsample/reference/validation_split.html) creates a single resample to be used for validation.
 
 </codeblock>
 
 </exercise>
 
-<exercise id="9" title="Using your validation set">
+<exercise id="8" title="Using your validation set">
 
 This new validation set you just created will be used to...
 
