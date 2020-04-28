@@ -1,5 +1,5 @@
 library(tidyverse)
-tidy_sisters <- readRDS("data/c4_tidy_sisters.rds")
+tidy_sisters <- readRDS("data/tidy_sisters.rds")
 
 # Overall agreement with all questions by age
 tidy_sisters %>%

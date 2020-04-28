@@ -72,12 +72,12 @@ Note: There is a column called `sister` in this dataset that is an identifier fo
 
 **Instructions**
 
-- Use the [`gather()`](https://tidyr.tidyverse.org/reference/gather.html) function to transform the wide data set with each survey question in a separate column to a narrow, tidy data set with each survey question in a separate row.
+- Use the [`pivot_longer()`](https://tidyr.tidyverse.org/reference/pivot_longer.html) function to transform the wide data set with each survey question in a separate column to a narrow, tidy data set with each survey question in a separate row.
 - View the structure of this tidy data set using `glimpse()`.
 
 <codeblock id="04_04_1">
 
-When you implement `... %>% gather(key, value, -age)`, you transform the data set from wide (non-tidy) to narrow (tidy). The argument `-age` specifies that we want to keep the `age` column for each row.
+When you implement `... %>% pivot_longer(-age, names_to = "key", values_to = "value")`, you transform the data set from wide (non-tidy) to narrow (tidy). The argument `-age` specifies that we want to keep the `age` column for each row.
 
 </codeblock>
 
@@ -125,27 +125,7 @@ In this exercise, we are using [`filter()`](https://dplyr.tidyverse.org/referenc
 
 </exercise>
 
-<exercise id="7" title="Building a simple linear model">
-
-You have gotten to know this data a bit through exploratory data analysis, and now it's time to build the simplest possible model, in preparation for more complex predictive modeling. For this data set where we want to predict age from the survey responses (coded as integers), we can build a simple linear model for all our data using only the [`lm()`](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/lm.html) function.
-
-**Instructions**
-
-- Remove the identifier column `sister` from the dataset to create `sisters_select`. 
-- Use the correct variable on the left-hand side of the equation so that you build a model predicting age as a function of all other columns. 
-- Call `summary()` for the simple model you've built to see the results.
-
-<codeblock id="04_07">
-
-- We want to predict age using all other variables, so the first argument to `lm()` should be `age ~ .`.
-- Remove the `sister` identifier from the data set with `select(sisters67, -sister)`.
-- You can examine the results of this simple modeling with `summary(simple_lm)`.
-
-</codeblock>
-
-</exercise>
-
-<exercise id="8" title="Training, validation, and testing data">
+<exercise id="7" title="Training, validation, and testing data">
 
 It's time to split your data into different sets now. You've done this three times already in this course, but in this last case study we are also going to create a validation set. Using a validation set is important anytime you will compare multiple models and choose between them, or adjust hyperparameters in a model. 
 
@@ -157,7 +137,7 @@ We are going to split the data into 60% training, 20% validation, 20% testing.
     - Specify one to split between training (60%) and validation/testing (40%).
     - Specify another one to split between validation and testing (50% each).
 
-<codeblock id="04_08">
+<codeblock id="04_07">
 
 The [`initial_split()`](https://tidymodels.github.io/rsample/reference/initial_split.html) function creates a vector that specifies which examples belong in the training set, or the test set.
 

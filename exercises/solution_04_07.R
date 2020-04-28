@@ -1,13 +1,21 @@
 library(tidyverse)
-sisters67 <- read_csv("data/sisters.csv")
-
-# Remove the sister column
-sisters_select <- sisters67 %>% 
+library(rsample)
+sisters_select <- read_csv("data/sisters.csv") %>%
     select(-sister)
 
-# Build a simple linear regression model
-simple_lm <- lm(age ~ ., 
-                data = sisters_select)
+# Split the data into training and validation/test sets
+train_split <- sisters_select %>%
+    initial_split(prop = 0.6,
+                  strata = "age")
 
-# Print the summary of the model
-summary(simple_lm)
+sisters_train <- training(train_split)
+validate_test <- testing(train_split)
+
+# Split the validation and test sets
+set.seed(1234)
+validation_split <- validate_test %>%
+    initial_split(prop = 0.5,
+                  strata = "age")
+
+sisters_validate <- training(validation_split)
+sisters_test <- testing(validation_split)
