@@ -15,7 +15,7 @@ id: 4
 
 </exercise>
 
-<exercise id="2" title="Choosing an appropriate model">
+<exercise id="2" title="Choose an appropriate model">
 
 In this case study, you will predict the age of Catholic nuns from their answers on a survey fielded in 1967 focusing on questions about social and religious issues. What kind of model will you build?
 
@@ -47,7 +47,7 @@ To predict a continuous, numeric quantity like age, use regression models.
 
 </exercise>
 
-<exercise id="3" title="Visualizing the age distribution">
+<exercise id="3" title="Visualize the age distribution">
 
 The first step before you start modeling is to explore your data, and we are going to spend a little more time on this step in this last case study. To start with, check out the distribution of ages for the respondents in this survey. 📊 (Keep in mind throughout this case study that the data you have in your environment is one quarter of the real survey data.)
 
@@ -64,7 +64,7 @@ You can build a histogram using [`geom_histogram()`](https://ggplot2.tidyverse.o
 
 </exercise>
 
-<exercise id="4" title="Tidying the survey data">
+<exercise id="4" title="Tidy the survey data">
 
 Embracing [tidy data principles](https://tidyverse.tidyverse.org/articles/manifesto.html) is a powerful option for exploratory data analysis. When your data is tidy, you can quickly iterate in getting to know your data better and making exploratory plots. Let's transform this wide data set into a tidy data frame with one observation per row, and then check out some characteristics of this subset of the original survey.
 
@@ -104,7 +104,7 @@ Next look at question agreement overall.
 
 </exercise>
 
-<exercise id="6" title="Visualizing agreement with age">
+<exercise id="6" title="Visualize agreement with age">
 
 The tidied version of the survey data that you constructed is available in your environment. You have many options at your fingertips with this tidy data now. Make a plot that shows how agreement on a subset of the questions changes with age.
  📉
@@ -169,9 +169,9 @@ The final evaluation is done with the testing set. It is important to do this fi
 
 </exercise>
 
-<exercise id="10" title="Predicting age with supervised machine learning" type="slides">
+<exercise id="9" title="Tune model hyperparameters" type="slides">
 
-<slides source="chapter4_10">
+<slides source="chapter4_09">
 </slides>
 
 </exercise>
