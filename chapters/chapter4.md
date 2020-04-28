@@ -259,43 +259,62 @@ Your function should be `tune_grid(tree_wf, sisters_val, grid = tree_grid)`.
 
 </exercise>
 
-<exercise id="13" title="Choosing between models">
+<exercise id="13" title="Visualize tuning results">
 
-Now that you have created a data frame that contains all three models' predictions, let's compare their performance.
+Now that you have trained models for many possible tuning parameters, let's explore the results.
+
+(The results available in your environment were trained over a larger grid of tuning parameters.)
 
 **Instructions**
 
-- Load `yardstick`. 
-- Use the [`metrics()`](https://tidymodels.github.io/yardstick/reference/metrics.html) function from the yardstick package to see how each model performed. There are two important arguments that you need to supply to `metrics()`, `truth` (the true age of each nun) and `estimate` (the predicted age of each nun). Which column in the data frame you created corresponds to each?
+- As a first step, use the function `collect_metrics()` to extract the performance metrics from the tuning results.
+- In the call to `aes()`, put `cost_complexity` on the x-axis and assign `tree_depth` to the color aesthetic.
 
 <codeblock id="04_13">
 
-The `truth` argument should always be `age`, while the `estimate` column changes with each model.
+Set up your aesthetic call as `aes(cost_complexity, mean, color = tree_depth)`.
 
 </codeblock>
 
 </exercise>
 
-<exercise id="14" title="Estimating uncertainty for new data">
+<exercise id="14" title="Find the best parameters">
 
-You just compared the three models you trained, and the XGBoost model performed best on the validation data set. Gradient boosting models are very effective and are a powerful tool in your machine learning arsenal. Before you take a trained model like this and use it to make predictions on new data, you must estimate how your final chosen model will perform. Specifically, let's estimate the [`rmse()`](https://tidymodels.github.io/yardstick/reference/rmse.html) for this model.
+You just visualized the tuning results, but you can also select the best set of tuning parameters and update your `workflow()` with these values.
 
 **Instructions**
 
-- Which data set would you use to estimate how your model will perform on new data? You have `sisters_train`, `sisters_validate`, and `sisters_test` data sets available in your environment. Use the correct one *both* at the beginning of the pipe and within the call to `predict()`.
-- Calculate the RMSE (root mean squared error) using the appropriate function from [yardstick](https://tidymodels.github.io/yardstick/).
+- Use the function `select_best()` to extract the hyperparameters with the lowest RMSE from the tuning results.
+- Pipe the original workflow object to `finalize_workflow()` with that best decision tree as an argument, to update it.
 
 <codeblock id="04_14">
 
-You want to use the `sisters_test` data along with the `rmse()` function.
+After you execute `tree_wf %>% finalize_workflow(best_tree)`, the output can be used to predict on new data.
 
 </codeblock>
 
 </exercise>
 
-<exercise id="15" title="Wrapping up" type="slides">
+<exercise id="15" title="Use the testing data">
 
-<slides source="chapter4_15">
+We haven't touched the testing data throughout this analysis, but here at the very end, we can come back to it and estimate how well our model will perform on new data. If all has gone well, our performance metrics such as RMSE will be about the same as from the validation set, indicating that we did not overfit during our tuning procedure. Let's use the `last_fit()` function to fit to the entire training set and evaluate on the testing set.
+
+**Instructions**
+
+- Fit to the training set and evaluate on the testing set using `last_fit()`. 
+- Access the performance metrics for the testing set using `collect_metrics()`.
+
+<codeblock id="04_15">
+
+You don't need to specify anything to get the testing set metrics; you only need to use the `collect_metrics()` function.
+
+</codeblock>
+
+</exercise>
+
+<exercise id="16" title="Wrapping up" type="slides">
+
+<slides source="chapter4_16">
 </slides>
 
 </exercise>
