@@ -22,7 +22,7 @@ tree_spec <- decision_tree(
   set_mode("regression")
 ```
 
-Notes: In this last case study, you are going to work with model hyperparameters for the first time in this course. Some model parameters cannot be learned directly from a dataset during model training; these kinds of parameters are called **hyperparameters**. Some examples of hyperparameters include the number of predictors that are sampled at splits in a tree-based model (we call this `mtry` in tidymodels) or the learning rate in a boosted tree model (we call this `learn_rate`). 
+Notes: In this last case study, you are going to work with model hyperparameters for the first time in this course. Some model parameters cannot be learned directly from a dataset during model training; these kinds of parameters are called **hyperparameters**. 💥 Some examples of hyperparameters include the number of predictors that are sampled at splits in a tree-based model (we call this `mtry` in tidymodels) or the learning rate in a boosted tree model (we call this `learn_rate`). 
 
 Instead of learning these kinds of hyperparameters during model training, we can estimate the best values for these values by training many models on a resampled data set (like the validation set you just created) and measuring how well all these models perform. This process is called **tuning**.
 
@@ -72,7 +72,7 @@ grid_regular(num_comp(c(3, 12)),
 
 Notes: You have a couple of options for how to choose which possible values for the tuning parameters to try. One option is to set up a grid of possible parameter values.
 
-Here, we are using default ranges for cost complexity and tree depth, and we are going to try 3 to 12 principal components. When we set `levels = 5`, we are saying we want five levels of each parameter, which means 125 total models to try. You can use the function `tune_grid()` to try these models; you can tune either a workflow or a model specification with a set of resampled data, such as the validation set you created (i.e. a single resample).
+Here, we are using default ranges for cost complexity and tree depth, and we are going to try 3 to 12 principal components. When we set `levels = 5`, we are saying we want five levels of each parameter, which means there will be 125 total models to try. You can use the function `tune_grid()` to try these models; you can tune either a workflow or a model specification with a set of resampled data, such as the validation set you created (i.e. a single resample).
 
 ---
 
@@ -93,7 +93,7 @@ Notes: In some cases, an approach with three data partitions is overkill, perhap
 ![tune results](https://github.com/juliasilge/course-ML-tidymodels/blob/master/img/tune_results.png?raw=true)
 
 
-Notes: This dataset of extensive survey responses from Catholic nuns in the 1960s is a great demonstration of all of these issues. You will use your validation set to find which values of the parameters (cost complexity, tree depth, and number of principal components) result in the highest $R^2% and lowest RMSE. Notice here that we get the best results with a tree depth of 4 and 5 principal components.
+Notes: This dataset of extensive survey responses from Catholic nuns in the 1960s is a great demonstration of all of these issues. You will use your validation set to find which values of the parameters (cost complexity, tree depth, and number of principal components) result in the highest $R^2$ and lowest RMSE. Notice here that we get the best results with a tree depth of 4 and 5 principal components.
 
 As you work through the final set of exercises, you will see all of this come together, along with all the other practical predictive modeling skills we've explored in this course.
 

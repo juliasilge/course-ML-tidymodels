@@ -176,38 +176,84 @@ The final evaluation is done with the testing set. It is important to do this fi
 
 </exercise>
 
-<exercise id="11" title="Training, validation, and testing data">
+<exercise id="10" title="Identify tuning parameters">
 
-In this chapter, you will explore a few new kinds of models. Fun! 💃The `"gbm"` gradient boosting and `"xbgLinear"` extreme gradient boosting models take a very long time to train, so we'll upload trained models for you to evaluate in the next exercises. In this exercise, train a CART model with `"rpart"` to predict age with all the other columns.
-
-To allow the code in this exercise to evaluate quickly, the training set in your environment only contains 500 rows. (You'll see a warning because the training set here is so small.)
+It's time to build a modeling `workflow()` for this last dataset. We aren't going to fit this dataset just once, but instead _many_ times! We are going to use this `workflow()` to tune hyperparameters both in our model specification and our preprocessing recipe.
 
 **Instructions**
 
-- Using caret, train a CART model to predict `age` based on all other variables on `sisters_train` data. 
+Let's start with our preprocessing tuning.
 
-When you don't give any specific [`trainControl()`](https://topepo.github.io/caret/model-training-and-tuning.html#basic-parameter-tuning) argument to `train()`, the model training is implemented with a default resampling strategy, 25 bootstrap resamplings.
+- Add two preprocessing steps to this recipe, first to normalize and them to implement PCA.
+- Specify that we want to `tune()` the number of principal components.
 
-<codeblock id="04_11">
+<codeblock id="04_10_1">
 
-- To train a model use the `train()` function. 
-- The `method` argument to `train()` should be `"rpart"`.
+- To normalize, use `step_normalize()`. 
+- To implement PCA, use `step_pca()`.
+
+</codeblock>
+
+Next let's build our model specification with tuning.
+
+**Instructions**
+
+- Start by specifying that we want to train a `decision_tree()` model.
+- Add the two parameters we want to tune, cost complexity and tree depth.
+
+<codeblock id="04_10_2">
+
+The variables for these parameters are `cost_complexity` and `tree_depth`.
+
+</codeblock>
+
+Finally, let's put our recipe and model specification together in a `workflow()`, for ease of use.
+
+**Instructions**
+
+- First set up a `workflow()` object.
+- Add the recipe to the `workflow()`.
+- Add the model to the `workflow()`
+
+<codeblock id="04_10_3">
+
+You start off any workflow with the `workflow()` function.
 
 </codeblock>
 
 </exercise>
 
-<exercise id="12" title="Making predictions">
 
-Three models are available in your environment (trained on the data set in its entirety), the CART model you just trained along with two kinds of gradient boosting models. Your next task is to decide which of these models to use for prediction on new data. If you use the training data to evaluate the models, you will underestimate your error for new data and might make the wrong choice altogether. That leaves the validation data and the testing data.
+<exercise id="11" title="Create a tuning grid">
+
+Let's create a grid! 💃To tune our hyperparameters, we need a set of possible values for each parameter to try. In this case study, we'll work through a regular grid of hyperparameter values.
 
 **Instructions**
 
-- Which data set should you use to choose between these three models, `sisters_validate` or `sisters_test`? Use that option to create a data frame for comparing the models.
+- Use the function `grid_regular()` to create a grid of tuning parameters.
+- Add the function for the tree depth tuning parameter, after the cost complexity tuning parameter function.
+
+<codeblock id="04_11">
+
+Use the function `tree_depth()` for the third tuning parameter in the grid.
+
+</codeblock>
+
+</exercise>
+
+<exercise id="12" title="Time to tune">
+
+It's time to finally tune! The recipe, model, workflow, and grid are built here for you, and now you can put them together to find out which combination of parameters results in the best performance. (There is a smaller grid created here so the tuning will evaluate faster.)
+
+**Instructions**
+
+- Use the function `tune_grid()` to tune your model.
+- For the first argument, add your tuneable workflow.
+- For the third argument, add the grid of possible parameters.
 
 <codeblock id="04_12">
 
-The validation data set is the appropriate option for choosing between models.
+Your function should be `tune_grid(tree_wf, sisters_val, grid = tree_grid)`.
 
 </codeblock>
 
