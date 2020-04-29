@@ -5,9 +5,9 @@ type: slides
 # Evaluating models with resampling
 
 
-Notes: You just trained models one time on the whole training set and then evaluated them on the testing set. Statisticians have come up with a slew of approaches to evaluate models in better ways than this; a lot of important ones fall under the category of **resampling**.
+Notes: You just trained models one time on the whole training set and then evaluated them on the testing set. Statisticians have come up with a slew of approaches to evaluate models in better ways than this; many important ones fall under the category of **resampling**.
 
-The idea of resampling is to create simulated data sets that can be used to estimate the performance of your model, instead of using either your training set (which can be overly optimistic) or your testing set (which is extremely valuable and can only be used once or at most twice).
+The idea of resampling is to create simulated data sets that can be used to estimate the performance of your model, say, because you want to compare models. You can create these resampled data sets instead of using either your training set (which can give overly optimistic results, especially for powerful ML algorithms) or your testing set (which is extremely valuable and can only be used once or at most twice).
 
 ---
 

@@ -246,7 +246,9 @@ Here you will use the [`conf_mat()`](https://tidymodels.github.io/yardstick/refe
 
 **Instructions**
 
-Print the confusion matrix for the `stack_glm` model on the `stack_test` data. Note that the first argument to `conf_mat()` is `truth` and the second is `estimate`.
+Print the confusion matrix for the `stack_glm` model on the `stack_test` data. If we wanted to compare more than two modeling options, we should definitely create some resampled data sets like we did in the first case study. This case study is already getting long, so let's stick with the testing data.
+
+Note that the first argument to `conf_mat()` is `truth` and the second is `estimate`.
 
 <codeblock id="02_12_1">
 

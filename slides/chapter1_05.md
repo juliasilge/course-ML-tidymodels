@@ -11,7 +11,7 @@ Notes: You just performed some exploratory data analysis and built a simple line
 
 # Predicting fuel efficiency ⛽ 
 
-![Alt text](https://github.com/juliasilge/supervised-ML-case-studies-course/blob/master/img/histogram.png?raw=true)
+![Histogram](https://github.com/juliasilge/course-ML-tidymodels/blob/master/img/mpg_histogram.png?raw=true)
 
 Notes: You were able to see how the fuel efficiency for these cars is distributed and to get an idea about whether you will be able to train accurate models. Now it's time to bring out a more powerful and flexible set of tools for predictive modeling. 
 
@@ -29,7 +29,7 @@ When you type `library(tidymodels)`, you load a collection of packages for model
 
 ---
 
-![Alt text](https://github.com/juliasilge/supervised-ML-case-studies-course/blob/master/img/testtrain.png?raw=true)
+![test train](https://github.com/juliasilge/supervised-ML-case-studies-course/blob/master/img/testtrain.png?raw=true)
 
 Notes: It is best practice to hold out some of your data for **testing** in order to get a better estimate of how your models will perform on new data, especially when you use very powerful machine learning techniques. Linear regression doesn't really fall into that category, but we are going to practice this anyway. The tidymodels package [rsample](https://tidymodels.github.io/rsample/) has functions that help you specify training and testing sets.
 

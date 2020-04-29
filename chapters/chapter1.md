@@ -99,7 +99,7 @@ Before embarking on more complex machine learning models, it's a good idea to bu
 
 <exercise id="6" title="Training and testing data">
 
-Training models based on all of your data at once is typically not the best choice. 🚫 Instead, you can create subsets of your data that you use for different purposes, such as *training* your model and then *testing* your model. 
+Training models based on all of your data at once is typically not a good choice. 🚫 Instead, you can create subsets of your data that you use for different purposes, such as *training* your model and then *testing* your model. 
 
 Creating training/testing splits reduces overfitting. When you evaluate your model on data that it was not trained on, you get a better estimate of how it will perform on new data.
 
@@ -148,9 +148,11 @@ For a random forest model, use the function `rand_forest()`.
 
 </exercise>
 
-<exercise id="8" title="Evaluate your models">
+<exercise id="8" title="Evaluate model performance">
 
-The `fit_lm` and `fit_rf` models you just trained are in your environment. It's time to evaluate them! 🤩 For regression models, we will focus on evaluating using the **root mean squared error**. This quantity is measured in the same units as the original data (log of miles per gallon, in our case). Lower values indicate a better fit to the data. It's not too hard to calculate root mean squared error manually, but the [yardstick](https://tidymodels.github.io/yardstick/) package offers convenient functions for this and many other model performance metrics.
+The `fit_lm` and `fit_rf` models you just trained are in your environment. It's time to see how they did! 🤩 How are we doing do this, though?! 🤔 There are several things to consider, including both what _metrics_ and what _data_ to use.
+
+For regression models, we will focus on evaluating using the **root mean squared error** metric. This quantity is measured in the same units as the original data (log of miles per gallon, in our case). Lower values indicate a better fit to the data. It's not too hard to calculate root mean squared error manually, but the [yardstick](https://tidymodels.github.io/yardstick/) package offers convenient functions for this and many other model performance metrics.
 
 **Instructions**
 
@@ -169,7 +171,9 @@ The `fit_lm` and `fit_rf` models you just trained are in your environment. It's 
 
 <exercise id="9" title="Use the testing data">
 
-"But wait!" you say, because you have been paying attention. 🤔 "That is how these models perform on the *training* data, the data that we used to build these models in the first place." Let's evaluate how these simple models perform on the testing data.
+"But wait!" you say, because you have been paying attention. 🤔 "That is how these models perform on the *training* data, the data that we used to build these models in the first place." This is _not_ a good idea because when you evaluate on the same data you used to train a model, the performance you estimate is too optimistic.
+
+Let's evaluate how these simple models perform on the testing data instead.
 
 **Instructions**
 
