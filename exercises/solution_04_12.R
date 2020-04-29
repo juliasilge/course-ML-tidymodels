@@ -27,5 +27,5 @@ set.seed(123)
 tree_res <- tune_grid(
     tree_wf,
     sisters_val,
-    grid = tree_grid
+    tree_grid
 )

@@ -253,7 +253,7 @@ It's time to finally tune! The recipe, model, workflow, and grid are built here 
 
 <codeblock id="04_12">
 
-Your function should be `tune_grid(tree_wf, sisters_val, grid = tree_grid)`.
+Your function should be `tune_grid(tree_wf, sisters_val, tree_grid)`.
 
 </codeblock>
 

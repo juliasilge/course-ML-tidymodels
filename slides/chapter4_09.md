@@ -41,7 +41,7 @@ sisters_recipe <- recipe(age ~ ., data = sisters_other) %>%
 Notes: Model hyperparameters aren't the only things you can tune. You can also tune steps in your preprocessing pipeline. This recipe has two steps:
 
 - First, this recipe centers and scales all those numeric predictors we have in this dataset, cataloging the nuns' responses to the survey questions.
-- Second, this recipe implements principal component analysis on these same predictors. Except... this recipe identifies that we _want_ to implement PCA and we aren't sure how many predictors we want. We want to choose the best 🏆 number of predictors. 
+- Second, this recipe implements principal component analysis on these same predictors. Except... this recipe identifies that we _want_ to implement PCA and we aren't sure how many predictors we should use. We want to choose the best 🏆 number of predictors. 
 
 ---
 
@@ -72,7 +72,9 @@ grid_regular(num_comp(c(3, 12)),
 
 Notes: You have a couple of options for how to choose which possible values for the tuning parameters to try. One option is to set up a grid of possible parameter values.
 
-Here, we are using default ranges for cost complexity and tree depth, and we are going to try 3 to 12 principal components. When we set `levels = 5`, we are saying we want five levels of each parameter, which means there will be 125 total models to try. You can use the function `tune_grid()` to try these models; you can tune either a workflow or a model specification with a set of resampled data, such as the validation set you created (i.e. a single resample).
+Here, we are using default ranges for cost complexity and tree depth, and we are going to try 3 to 12 principal components. When we set `levels = 5`, we are saying we want five levels for each parameter, which means there will be 125 (`5 * 5 * 5`) total models to try. 
+
+You can use the function `tune_grid()` to fit all these models; you can tune either a workflow or a model specification with a set of resampled data, such as the validation set you created (i.e. a single resample).
 
 ---
 
@@ -86,14 +88,16 @@ Notes: You train these 125 possible models on the training data and use the vali
 
 Don't overestimate how well your model is performing! 🙅
 
-Notes: In some cases, an approach with three data partitions is overkill, perhaps a bit too much, but if you have enough data that you can use some of these powerful machine learning techniques, the danger you face is underestimating your uncertainty for new data if you estimate it with data that you used to pick a model. To get a reliable estimate, you need to use another heldout dataset, either a validation set or a set of simulated datasets created through resampling.
+Notes: For some modeling use cases, an approach with three data partitions is overkill, perhaps a bit too much, but if you have enough data that you can use some of these powerful machine learning algorithms or techniques, the danger you face is underestimating your uncertainty for new data if you estimate it with data that you used to pick a model. 
+
+To get a reliable estimate from tuning, for example, you need to use another heldout dataset for assessing the models, either a validation set or a set of simulated datasets created through resampling.
 
 ---
 
 ![tune results](https://github.com/juliasilge/course-ML-tidymodels/blob/master/img/tune_results.png?raw=true)
 
 
-Notes: This dataset of extensive survey responses from Catholic nuns in the 1960s is a great demonstration of all of these issues. You will use your validation set to find which values of the parameters (cost complexity, tree depth, and number of principal components) result in the highest $R^2$ and lowest RMSE. Notice here that we get the best results with a tree depth of 4 and 5 principal components.
+Notes: This dataset of extensive survey responses from Catholic nuns in the 1960s is a great demonstration of all of these issues. You will use your validation set to find which values of the parameters (cost complexity, tree depth, and number of principal components) result in the highest R-squared and lowest RMSE. Notice here that we get the best results with a tree depth of 4 and 5 principal components.
 
 As you work through the final set of exercises, you will see all of this come together, along with all the other practical predictive modeling skills we've explored in this course.
 

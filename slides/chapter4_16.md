@@ -73,7 +73,7 @@ final_tree %>%
 2 rsq     standard       0.236
 ```
 
-The performance metrics you achieved on the testing set indicate that you did not overfit during the tuning process.
+Notes: The performance metrics you achieved on the testing set indicate that you did not overfit during the tuning process.
 
 ---
 
@@ -98,7 +98,7 @@ You can also use a validation set to choose between different models.
 
 Notes: This analysis was just the final example in the series of predictive projects you approached in this course. 
 
-You learned how to go from raw data to exploring that data to training models to evaluating those models using the [tidymodels](https://github.com/tidymodels) metapackage and important tools for exploratory data analysis from the [tidyverse](https://tidyverse.tidyverse.org/) ecosystem, like dplyr and ggplot2.
+You learned how to go from raw data to exploring that data to training models to evaluating those models using the [tidymodels](https://www.tidymodels.org/) metapackage and important tools for exploratory data analysis from the [tidyverse](https://www.tidyverse.org/) ecosystem, like dplyr and ggplot2.
 
 ---
 
@@ -127,7 +127,7 @@ There are five articles at [**Get Started**](https://www.tidymodels.org/start/) 
 - Try out multiple modeling approaches for each new problem 
 - Overall, [gradient tree boosting and random forest](https://arxiv.org/abs/1708.05070v1) 🌳 perform well
 
-Notes: The high level takeaways that you should remember from this course are first, that each time you have a new predictive modeling problem you are working on, you need to try out multiple different kinds of models. You don't know ahead of time which kind of model is going to perform best. This paper linked here uses some super interesting analysis to show that most often, the two kinds of models that perform best are gradient tree boosting and random forest. 
+Notes: The high level takeaways that you should remember from this course are first, that each time you have a new predictive modeling problem you are working on, you need to try out multiple different kinds of models. You don't know ahead of time which kind of model is going to perform best. This paper linked on this slide uses some super interesting analysis to show that most often, the two kinds of models that perform best are gradient tree boosting and random forest. 
 
 However, depending on how much data you have and the specifics of your problem, that may not be true, so you have to try it for yourself. Also, start with a **simple model** to compare to. 
 
