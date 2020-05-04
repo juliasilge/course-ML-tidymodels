@@ -4,7 +4,9 @@ type: slides
 
 # Evaluate model performance
 
-Notes: Excellent job! You preprocessed this data, built a modeling workflow, and created cross-validation folds to evaluate model performance. 😎 Let's talk about that model performance now.
+Notes: Excellent job! You preprocessed this data, built a modeling workflow, and created cross-validation folds to evaluate model performance. 😎 
+
+Let's talk about that model performance now, how to set _non-default performance metrics_ and save _predictions_ from resampled data.
 
 ---
 
@@ -21,7 +23,11 @@ vote_wf %>%
 
 Notes: Just like in our first case study, we can use the function `fit_resamples()` to fit a model (a workflow in this case, actually, that holds both a preprocessor and a model specification) to each cross-validation fold and compute performance metrics. The code shown on this slide will fit our workflow `vote_wf` to the cross-validation folds in `vote_folds` and determine how well the model performed each time.
 
-The fitted models themselves are not kept or stored because they are only used for computing performance metrics. However, we are saving the predictions with `save_pred = TRUE` so we can build a confusion matrix, and we have also set specific performance metrics to be computed (instead of the defaults) with `metric_set(roc_auc, sens, spec)`. We will have the area under the ROC curve, sensitivity, and specificity.
+The fitted models themselves are not kept or stored because they are only used for computing performance metrics. However, we are saving the predictions with `save_pred = TRUE` so we can build a confusion matrix, and we have also set _specific performance metrics_ to be computed (instead of the defaults) with `metric_set(roc_auc, sens, spec)`. We will have: 
+
+- the area under the ROC curve, 
+- sensitivity, and 
+- specificity.
 
 ---
 
