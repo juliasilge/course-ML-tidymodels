@@ -27,7 +27,9 @@ Partitioning your data into subsets and using one subset for validation
 - `vfold_cv(vote_train, v = 10, repeats = 5)`
 
 
-Notes: In tidymodels, you can create cross-validation resamples with the function `vfold_cv()`, either with or without the `repeats` argument. Let's look at this in more detail. 🧐
+Notes: In tidymodels, you can create cross-validation resamples with the function `vfold_cv()`, either with or without the `repeats` argument. 
+
+Let's look at this in more detail. 🧐
 
 ---
 
@@ -35,6 +37,8 @@ Notes: In tidymodels, you can create cross-validation resamples with the functio
 
 
 Notes: Let's say we have a sample of lots of people, some of whom voted and some of whom did not, and we want to implement 10-fold cross-validation. This means we divide our training data into 10 groups or folds, and 1 subset or fold acts as our assessment fold (like a mini testing test). We train our model on 9 of the folds and then evaluate the model on the assessment fold.
+
+If we are using preprocessing steps such as upsampling that should **only** be applied to the 9/10 of the data used for analysis (not the 1/10 of the data used for assessment), the [recipes](https://tidymodels.github.io/recipes/) package will automatically take care of that for us. 👍
 
 ---
 
