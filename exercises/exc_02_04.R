@@ -1,6 +1,7 @@
 library(tidyverse)
 stack_overflow <- read_csv("data/stack_overflow.csv") %>%
-    mutate(Remote = factor(Remote, levels = c("Remote", "Not remote")))
+    mutate(Remote = factor(Remote, levels = c("Remote", "Not remote"))) %>%
+    mutate_if(is.character, factor)
 
 # Load tidymodels
 library(___)
