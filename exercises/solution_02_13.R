@@ -18,4 +18,4 @@ accuracy(results, truth = remote, estimate = .pred_tree)
 
 ## Calculate positive predict value
 ppv(results, truth = remote, estimate = .pred_glm)
-ppv(results, truth = v, estimate = .pred_tree)
+ppv(results, truth = remote, estimate = .pred_tree)

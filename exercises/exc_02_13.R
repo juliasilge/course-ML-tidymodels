@@ -18,4 +18,4 @@ ___(results, truth = remote, estimate = .pred_tree)
 
 ## Calculate positive predict value
 ___(results, truth = remote, estimate = .pred_glm)
-___(results, truth = v, estimate = .pred_tree)
+___(results, truth = remote, estimate = .pred_tree)
