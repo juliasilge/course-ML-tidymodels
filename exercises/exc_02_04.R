@@ -16,7 +16,7 @@ stack_split <- stack_select %>%
     initial_split(___,
                   strata = ___)
 
-stack_train <- training(___)
-stack_test <- testing(___)
+stack_train <- ___(stack_split)
+stack_test <- ___(stack_split)
 
 

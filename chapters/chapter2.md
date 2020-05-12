@@ -85,8 +85,8 @@ Create a data split that divides the original data into 80%/20% sections and abo
 - Load the `tidymodels` metapackage.
 - Create `stack_split`:
     - For the first argument to [`initial_split()`](https://tidymodels.github.io/rsample/reference/initial_split.html), use a value for `p` of 0.8.
-    - For the second argument to `initial_split()`, pass the name of the variable that contains remote status.
-- Assign the 80% partition to `stack_train` and the 20% partition to `stack_test`.
+    - For the second argument to `initial_split()`, stratify the split by remote status.
+- Use `training()` to assign the 80% partition to `stack_train` and use `testing()` to assign the 20% partition to `stack_test`.
 
 <codeblock id="02_04">
 
