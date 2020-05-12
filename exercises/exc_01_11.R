@@ -1,4 +1,3 @@
-library(tidyverse)
 library(tidymodels)
 
 car_train <- readRDS("data/c1_train_10_percent.rds")

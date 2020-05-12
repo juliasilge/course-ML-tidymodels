@@ -57,7 +57,7 @@ The first time you run a code exercise, it may take a little while for your Dock
 
 **Wherever you see `___` in a code exercise, replace it with the correct code as instructed. Run the code (via the button) to see if it will run, and submit it (via the other button) to check if it's correct.**
 
-The `tidyverse` metapackage is loaded for you. 
+The `tidyverse` metapackage is loaded for you, so you can use readr and ggplot2. 
 
 - Take a look at the `cars2018` object using `glimpse()`. Notice that some of the column names have spaces in them and are surrounded by backticks, like `` `Recommended Fuel` ``.
 - Use the appropriate column from the data set in the call to `aes()` so you can plot a histogram of fuel efficiency (MPG).
@@ -105,7 +105,7 @@ Creating training/testing splits reduces overfitting. When you evaluate your mod
 
 **Instructions**
 
-- Load the `tidymodels` metapackage. 
+- Load the `tidymodels` metapackage, which also includes dplyr for data manipulation. 
 - Create a data split that divides the original data into 80%/20% sections and (roughly) evenly divides the partitions between the different types of `Transmission`.
 - Assign the 80% partition to `car_train` and the 20% partition to `car_test`.
 
