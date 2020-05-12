@@ -122,7 +122,7 @@ Each car has a real fuel efficiency as reported by the Department of Energy and 
 
 Notes: In this lesson, you also are going to visualize these differences, like you see here. The x-axis has the actual fuel efficiency and the y-axis has the predicted fuel efficiency for each kind of model. 
 
-The difference between linear regression and random forest isn't huge here, but in this case, we can see visually that the random forest model is performing better.
+The difference between linear regression and random forest isn't huge here, but in this case, we can see visually that the random forest model is performing better. The slope for the random forest model is closer to the dotted line (the `slope = 1` line) and the spread around the line is smaller for the random forest model.
 
 ---
 
