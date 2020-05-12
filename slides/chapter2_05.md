@@ -107,6 +107,8 @@ Notes: When you [`prep()`](https://tidymodels.github.io/recipes/reference/prep.h
 
 When you [`juice()`](https://tidymodels.github.io/recipes/reference/juice.html) a prepped recipe, you get the preprocessed data back out. 
 
+You don't typically need to `prep()` and `juice()` recipes when you use tidymodels, but they are heplful functions to have in your toolkit for confirming that recipes are doing what you expect.
+
 ---
 
 # When do you balance classes? 🤔

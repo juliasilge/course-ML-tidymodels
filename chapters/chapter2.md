@@ -124,12 +124,14 @@ When you use `step_downsample(remote)`, you are saying "downsample my data so th
 
 <exercise id="7" title="Downsampling">
 
-Once your recipe is defined, you can estimate the parameters required to actually preprocess the data, and then extract the processed data.
+Once your recipe is defined, you can estimate the parameters required to actually preprocess the data, and then extract the processed data. This typically isn't necessary is you use a `workflow()` for modeling, but it can be helpful to diagnose problems or explore your preprocessing results.
 
 **Instructions**
 
 - First, `prep()` the recipe.
 - Then, `juice()` the prepped recipe.	
+	
+Check out the results of counting remote status after downsampling! You likely will not need to `juice()` when building a model but you can use this for exploration.	
 	
 <codeblock id="02_07">
 
