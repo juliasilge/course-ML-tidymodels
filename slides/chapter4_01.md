@@ -95,23 +95,23 @@ I do want to point out that this survey was fielded during the 1960s and there a
 ```r
 sisters67 %>%
     select(-sister) %>%
-    pivot_longer(-age, names_to = "key", values_to = "value")
+    pivot_longer(-age, names_to = "question", values_to = "rating")
 ```
 
 ```out
 # A tibble: 5,012,280 x 3
-     age key   value
-   <dbl> <chr> <dbl>
- 1    60 v116      1
- 2    60 v117      1
- 3    60 v118      3
- 4    60 v119      5
- 5    60 v120      1
- 6    60 v121      1
- 7    60 v122      3
- 8    60 v123      5
- 9    60 v124      3
-10    60 v125      1
+     age question rating
+   <dbl> <chr>     <dbl>
+ 1    60 v116          1
+ 2    60 v117          1
+ 3    60 v118          3
+ 4    60 v119          5
+ 5    60 v120          1
+ 6    60 v121          1
+ 7    60 v122          3
+ 8    60 v123          5
+ 9    60 v124          3
+10    60 v125          1
 # … with 5,012,270 more rows
 ```
 
