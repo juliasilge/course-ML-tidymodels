@@ -12,12 +12,12 @@ Notes: You just created a tidy version of this survey data, which allows you to 
 
 ```r
 tidy_sisters %>%
-    count(value)
+    count(rating)
 ```
 
 ```out
 # A tibble: 5 x 2
-  value       n
+  rating      n
   <dbl>   <int>
 1     1 1303555
 2     2  844311
@@ -37,22 +37,22 @@ We can see here that 1 was the most commonly chosen option; this corresponds to 
 ```r
 tidy_sisters %>%
     group_by(age) %>%
-    summarise(value = mean(value))
+    summarise(rating = mean(rating))
 ```
 
 ```out
 # A tibble: 9 x 2
-    age value
-  <dbl> <dbl>
-1    20  2.86
-2    30  2.81
-3    40  2.83
-4    50  2.94
-5    60  3.10
-6    70  3.26
-7    80  3.42
-8    90  3.51
-9   100  3.60
+    age rating
+  <dbl>  <dbl>
+1    20   2.86
+2    30   2.81
+3    40   2.83
+4    50   2.94
+5    60   3.10
+6    70   3.26
+7    80   3.42
+8    90   3.51
+9   100   3.60
 ```
 
 Notes: You can also check out how the overall answers to all survey questions vary with age. There were more statements on the survey that older respondents agreed with than statements younger respondents agreed with.
@@ -63,13 +63,13 @@ Notes: You can also check out how the overall answers to all survey questions va
 
 ```r
 tidy_sisters %>%
-    filter(key %in% paste0("v", 153:170)) %>%
-    group_by(key, value) %>%
+    filter(question %in% paste0("v", 153:170)) %>%
+    group_by(question, rating) %>%
     summarise(age = mean(age)) %>%
-    ggplot(aes(value, age, color = key)) +
+    ggplot(aes(rating, age, color = question)) +
     geom_line(alpha = 0.5, size = 1.5) +
     geom_point(size = 2) +
-    facet_wrap(~key)
+    facet_wrap(~question)
 ```
 
 Notes: We can go a few steps further and dig into how the answers to individual questions depend on age. This code first filters to a subset of questions on the survey, groups by these survey questions and the possible answers to them, and then calculates the mean age for each possible answer to each of the questions we're considering. 
