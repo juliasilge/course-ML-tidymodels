@@ -220,12 +220,12 @@ First evaluate `lm_mod`, and then evaluate `rf_mod`.
 
 You just trained models on bootstrap resamples of the training set and now have the results in `lm_res` and `rf_res`. These results are available in your environment, trained using the entire training set instead of 10% only. Now let's compare them. 
 
-Notice in this code how we use [`bind_rows()`](https://dplyr.tidyverse.org/reference/bind.html) from dplyr to combine the results from both models, along with [`unnest()`](https://tidyr.tidyverse.org/reference/unnest.html) from tidyr to make each prediction from each resample on its own row.
+Notice in this code how we use [`bind_rows()`](https://dplyr.tidyverse.org/reference/bind.html) from dplyr to combine the results from both models, along with [`collect_predictions()`](https://tune.tidymodels.org/reference/collect_predictions.html) to obtain and format predictions from each resample.
 
 **Instructions**
 
-- First `unnest()` the results for the linear model.
-- Then `unnest()` the results for the random forest model.
+- First `collect_predictions()` for the linear model.
+- Then `collect_predictions()` for the random forest model.
 
 <codeblock id="01_12_1">
 
