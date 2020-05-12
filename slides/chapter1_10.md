@@ -84,7 +84,9 @@ lm_mod %>%
     )
 ```
 
-Notes: Once you have created a set of resamples, you can use the function `fit_resamples()` to fit a model to each resample and compute performance metrics for each. The code on this slide shows how to fit our model specification `lm_mod` to the 25 bootstrap resamples in `car_boot`; this will fit the model 25 times and determine how well the model performed each time. The fitted models themselves are just thrown away and not stored in the output, because they are only used for computing performance metrics. 
+Notes: Once you have created a set of resamples, you can use the function `fit_resamples()` to fit a model to each resample and compute performance metrics for each. 
+
+The code on this slide shows how to fit our model specification `lm_mod` to the 25 bootstrap resamples in `car_boot`. This will fit our regression model 25 times, each time to a different bootstrapped version of the training data. We also determine how well our regression model performed 25 times, each time on the smaller subset of training data set aside when fitting. The fitted models themselves are just thrown away and not stored in the output, because they are only used for computing performance metrics. 
 
 To fit the random forest to these resamples and find performance metrics, we would use `rf_mod` instead.
 
