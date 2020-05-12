@@ -3,8 +3,12 @@ library(tidymodels)
 
 tree_res <- readRDS("data/c4_tree_res.rds")
 
-tree_res %>%
-    ___ %>%
+tree_metrics <- tree_res %>%
+    ___ 
+
+tree_metrics
+
+tree_metrics %>%
     mutate(tree_depth = factor(tree_depth),
            num_comp = paste("num_comp =", num_comp),
            num_comp = fct_inorder(num_comp)) %>%
