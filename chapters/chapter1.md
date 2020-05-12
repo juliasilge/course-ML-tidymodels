@@ -206,6 +206,7 @@ The data set available in your environment is 10% of its original size, to allow
 
 - Create bootstrap resamples to evaluate these models. The function to create this kind of resample is `bootstraps()`.
 - Evaluate both kinds of models, the linear regression model and the random forest model.
+- Use the bootstrap resamples you created `car_boot` for evaluating both models.
 
 <codeblock id="01_11">
 

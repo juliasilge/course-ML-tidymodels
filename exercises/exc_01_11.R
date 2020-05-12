@@ -17,13 +17,13 @@ car_boot
 lm_res <- ___ %>%
     fit_resamples(
         log(MPG) ~ .,
-        car_boot,
+        resamples = ___,
         control = control_resamples(save_pred = TRUE)
     )
 
 rf_res <- ___ %>%
     fit_resamples(
         log(MPG) ~ .,
-        car_boot,
+        resamples = ___,
         control = control_resamples(save_pred = TRUE)
     )
