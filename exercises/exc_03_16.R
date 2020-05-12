@@ -32,5 +32,5 @@ vote_final <- vote_wf %>%
 
 ## Confusion matrix
 vote_final %>% 
-    unnest(.predictions) %>% 
+    collect_predictions() %>% 
     ___(turnout16_2016, .pred_class)

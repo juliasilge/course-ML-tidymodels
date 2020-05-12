@@ -283,7 +283,9 @@ You can obtain the metrics from the random forest results with `collect_metrics(
 
 <exercise id="16" title="Back to the testing data">
 
-When we used resampling to evaluate model performance, we used the **training** data. We use the testing data at the end of our modeling analysis to estimate how our model will perform on new data. Let's use the `last_fit()` function to fit to the entire training set and evaluate on the testing set, with everything we've learned during this case study.
+When we used resampling to evaluate model performance with the **training set**, the logistic regression model performed better. Now, let's put this model to the test! 😎 
+
+Let's use the `last_fit()` function to fit to the entire training set one time and evaluate one time on the **testing set**, with everything we've learned during this case study. Our model has not yet seen the testing data, so this last step is the best way to estimate how well the model will perform when predicting with new data.
 
 **Instructions**
 
