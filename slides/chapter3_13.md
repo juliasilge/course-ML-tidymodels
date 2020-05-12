@@ -77,7 +77,7 @@ vote_final <- vote_wf %>%
     last_fit(vote_split)
 
 vote_final %>% 
-    unnest(.predictions) %>% 
+    collect_predictions() %>% 
     conf_mat(turnout16_2016, .pred_class)
 ```
 
