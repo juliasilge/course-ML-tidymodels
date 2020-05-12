@@ -281,30 +281,9 @@ You can obtain the metrics from the random forest results with `collect_metrics(
 
 </exercise>
 
-<exercise id="16" title="Back to the testing data">
+<exercise id="16" title="Which model is best?">
 
-When we used resampling to evaluate model performance with the **training set**, the logistic regression model performed better. Now, let's put this model to the test! 😎 
-
-Let's use the `last_fit()` function to fit to the entire training set one time and evaluate one time on the **testing set**, with everything we've learned during this case study. Our model has not yet seen the testing data, so this last step is the best way to estimate how well the model will perform when predicting with new data.
-
-**Instructions**
-
-- Fit to the training set and evaluate on the testing set using `last_fit()`. 
-- Create a confusion matrix for the results from the testing set.
-
-<codeblock id="03_16">
-
-Remember that `conf_mat()` is the function to find a confusion matrix.
-
-</codeblock>
-
-</exercise>
-
-<exercise id="17" title="Which model is best?">
-
-You have just spent a whole chapter of this course exploring how to predict voter turnout based on survey responses. Of the two types of models you tried, which is the better choice? Which do you expect to perform better on new data?
-
-Which model performed better on the **testing** data?
+You have just spent most of this chapter exploring how to predict voter turnout based on survey responses. Of the two types of models you tried, which is the better choice? Which do you expect to perform better on new data?
 
 <choice>
 <opt text="Random forest">
@@ -321,3 +300,23 @@ Logistic regression is a simpler model, but in this case, it performed better an
 </choice>
 
 </exercise>
+
+<exercise id="17" title="Back to the testing data">
+
+When we used resampling to evaluate model performance with the **training set**, the logistic regression model performed better. Now, let's put this model to the test! 😎 
+
+Let's use the `last_fit()` function to fit to the entire training set one time and evaluate one time on the **testing set**, with everything we've learned during this case study. Our model has not yet seen the testing data, so this last step is the best way to estimate how well the model will perform when predicting with new data.
+
+**Instructions**
+
+- Fit to the training set and evaluate on the testing set using `last_fit()`. 
+- Create a confusion matrix for the results from the testing set.
+
+<codeblock id="03_17">
+
+Remember that `conf_mat()` is the function to find a confusion matrix.
+
+</codeblock>
+
+</exercise>
+
