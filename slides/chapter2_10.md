@@ -71,6 +71,8 @@ Computational engine: glm
 
 Notes: You have a few options for that, but one straightforward way is to use a [`workflow()`](https://tidymodels.github.io/workflows/), an object that makes it easier to carry around pieces of, well, modeling workflows! The components of a `workflow()` go together like LEGO blocks; you add a preprocessor like a recipe or a formula, and a model.
 
+If you don't add one of those components (for example, `stack_wf` on this slide) the `workflow()` holds an empty spot ready for, say, the model. You may find this a convenient way to write your modeling code when you want to fit with the same preprocessor but different model specifications.
+
 ---
 
 # Fit a `workflow()`
