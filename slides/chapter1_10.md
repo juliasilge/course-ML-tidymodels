@@ -67,7 +67,9 @@ bootstraps(car_train)
 # … with 15 more rows
 ```
 
-Notes: I am very happy to be able to tell you that creating resamples is not too complicated with tidymodels. There are functions such as `boostraps()` and similar for other types of resampling. The default behavior is to do 25 bootstrap resamplings, but you can change this if you want to.
+Notes: I am very happy to be able to tell you that creating resamples is not too complicated with tidymodels. There are functions such as `bootstraps()` and similar for other types of resampling. The default behavior is to do 25 bootstrap resamplings, but you can change this if you want to. Notice that we resampled the `car_train` dataset, which is the _training_ data.
+
+The column `splits` is of type `list`. Instead of containing numbers or characters, this column contains lists. Each split in that column keeps track of which of the original data points are in the analysis set for that resample.
 
 ---
 
