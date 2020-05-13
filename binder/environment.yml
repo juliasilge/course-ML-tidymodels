@@ -1,10 +1,10 @@
 name: my_r_env
 channels:
- - defaults
+ - conda-forge
 dependencies:
- - libiconv
- - r-randomForest
- - r-rpart
- - r-ranger
- - r-tidyverse
- - r-tidymodels
+ - r-base=3.6.1
+ - r-essentials=3.6.0
+ - libiconv=1.15
+ - r-rpart=4.1_15
+ - r-ranger=0.10.1
+ - r-tidymodels=0.1.0 
