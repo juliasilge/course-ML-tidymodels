@@ -1,0 +1,10 @@
+name: my_r_env
+channels:
+ - defaults
+ - conda-forge
+dependencies:
+ - r-randomForest
+ - r-rpart
+ - r-ranger
+ - r-tidyverse
+ - r-tidymodels
