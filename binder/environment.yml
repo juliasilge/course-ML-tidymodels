@@ -3,6 +3,7 @@ channels:
  - defaults
  - conda-forge
 dependencies:
+ - libiconv
  - r-randomForest
  - r-rpart
  - r-ranger
