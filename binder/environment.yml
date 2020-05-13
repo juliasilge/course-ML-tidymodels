@@ -1,7 +1,6 @@
 name: my_r_env
 channels:
  - defaults
- - conda-forge
 dependencies:
  - libiconv
  - r-randomForest
