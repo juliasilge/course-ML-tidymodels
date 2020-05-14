@@ -1,4 +1,3 @@
-library(tidyverse)
 library(tidymodels)
 
 lm_res <- readRDS("data/c1_lm_res.rds")
@@ -11,4 +10,4 @@ results <-  bind_rows(___ %>%
                           collect_predictions() %>%
                           mutate(model = "rf"))
 
-results
+glimpse(results)

@@ -1,6 +1,6 @@
 library(tidymodels)
 
-car_test <- readRDS("data/c1_testing_full.rds")
+car_test <- readRDS("data/c1_test.rds")
 fit_lm <- readRDS("data/c1_fit_lm.rds")
 fit_rf <- readRDS("data/c1_fit_rf.rds")
 

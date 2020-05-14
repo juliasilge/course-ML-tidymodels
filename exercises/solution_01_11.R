@@ -26,3 +26,5 @@ rf_res <- rf_mod %>%
         resamples = car_boot,
         control = control_resamples(save_pred = TRUE)
     )
+
+glimpse(rf_res)
