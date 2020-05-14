@@ -1,4 +1,3 @@
-library(tidyverse)
 library(tidymodels)
 
 tree_spec <- ___(

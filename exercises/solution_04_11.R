@@ -5,4 +5,4 @@ tree_grid <- grid_regular(num_comp(c(3, 12)),
                           tree_depth(),
                           levels = 5)
 
-tree_grid
+glimpse(tree_grid)

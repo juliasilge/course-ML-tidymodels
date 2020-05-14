@@ -14,4 +14,4 @@ sisters_test <- testing(sisters_split)
 set.seed(123)
 sisters_val <- validation_split(sisters_other, strata = age)
 
-sisters_val
+glimpse(sisters_val)

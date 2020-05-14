@@ -25,6 +25,8 @@ tree_grid <- grid_regular(num_comp(c(3, 12)),
 set.seed(123)
 tree_res <- tune_grid(
     tree_wf,
-    sisters_val,
-    tree_grid
+    resamples = sisters_val,
+    grid = tree_grid
 )
+
+glimpse(tree_res)

@@ -5,4 +5,4 @@ tree_grid <- ___(num_comp(c(3, 12)),
                           ___,
                           levels = 5)
 
-tree_grid
+glimpse(tree_grid)

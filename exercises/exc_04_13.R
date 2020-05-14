@@ -1,4 +1,3 @@
-library(tidyverse)
 library(tidymodels)
 
 tree_res <- readRDS("data/c4_tree_res.rds")
@@ -6,7 +5,7 @@ tree_res <- readRDS("data/c4_tree_res.rds")
 tree_metrics <- tree_res %>%
     ___ 
 
-tree_metrics
+glimpse(tree_metrics)
 
 tree_metrics %>%
     mutate(tree_depth = factor(tree_depth),

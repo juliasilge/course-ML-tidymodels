@@ -14,4 +14,4 @@ sisters_test <- testing(___)
 set.seed(123)
 sisters_val <- ___(sisters_other, strata = age)
 
-sisters_val
+glimpse(sisters_val)
