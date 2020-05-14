@@ -26,3 +26,5 @@ rf_res <- ___ %>%
         resamples = ___,
         control = control_resamples(save_pred = TRUE)
     )
+
+glimpse(rf_res)
