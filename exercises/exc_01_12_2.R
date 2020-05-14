@@ -14,6 +14,6 @@ results <-  bind_rows(lm_res %>%
 results %>%
     ggplot(aes(`log(MPG)`, .pred)) +
     geom_abline(lty = 2, color = "gray50") +
-    geom_point(aes(color = id), size = 1.5, alpha = 0.3) +
+    geom_point(aes(color = id), size = 1.5, alpha = 0.3, show.legend = FALSE) +
     geom_smooth(method = "lm") +
     facet_wrap(~ model)

@@ -1,4 +1,4 @@
-car_vars <- readRDS("data/c1_cars_vars_full.rds")
+car_vars <- readRDS("data/c1_car_vars.rds")
 
 # Load tidymodels
 ___
@@ -10,3 +10,6 @@ car_split <- car_vars %>%
 
 car_train <- training(___)
 car_test <- testing(___)
+
+car_train
+car_test
