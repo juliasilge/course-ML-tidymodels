@@ -1,6 +1,6 @@
 library(tidyverse)
 stack_overflow <- read_csv("data/stack_overflow.csv") %>%
-    mutate(Remote = factor(Remote, levels = c("Remote", "Not remote"))) %>%
+    mutate(remote = factor(remote, levels = c("Remote", "Not remote"))) %>%
     mutate_if(is.character, factor)
 
 # Load tidymodels
@@ -19,4 +19,5 @@ stack_split <- stack_select %>%
 stack_train <- ___(stack_split)
 stack_test <- ___(stack_split)
 
-
+glimpse(stack_train)
+glimpse(stack_test)
