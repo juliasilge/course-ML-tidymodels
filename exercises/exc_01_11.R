@@ -11,7 +11,6 @@ rf_mod <- rand_forest() %>%
 
 ## Create bootstrap resamples
 car_boot <- ___(car_train)
-car_boot
 
 # Evaluate the models with bootstrap resampling
 lm_res <- ___ %>%

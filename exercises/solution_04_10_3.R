@@ -1,4 +1,3 @@
-library(tidyverse)
 library(tidymodels)
 
 sisters_other <- readRDS("data/c4_other.rds")

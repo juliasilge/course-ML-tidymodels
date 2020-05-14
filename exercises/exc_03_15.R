@@ -1,4 +1,3 @@
-library(tidyverse)
 library(tidymodels)
 
 glm_res <- readRDS("data/c3_glm_res.rds")
