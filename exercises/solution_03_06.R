@@ -13,3 +13,6 @@ vote_split <- voters_select %>%
                   strata = turnout16_2016)
 vote_train <- training(vote_split)
 vote_test <- testing(vote_split)
+
+glimpse(vote_train)
+glimpse(vote_test)

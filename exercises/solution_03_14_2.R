@@ -1,4 +1,3 @@
-library(tidyverse)
 library(tidymodels)
 
 vote_train <- readRDS("data/c3_train_10_percent.rds")
@@ -23,3 +22,5 @@ rf_res <- vote_wf %>%
         metrics = metric_set(roc_auc, sens, spec),
         control = control_resamples(save_pred = TRUE)
     )
+
+glimpse(rf_res)

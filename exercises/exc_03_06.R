@@ -13,3 +13,6 @@ vote_split <- ___ %>%
                   strata = ___)
 vote_train <- ___
 vote_test <- ___
+
+glimpse(vote_train)
+glimpse(vote_test)
