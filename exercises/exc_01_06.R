@@ -11,5 +11,5 @@ car_split <- car_vars %>%
 car_train <- training(___)
 car_test <- testing(___)
 
-car_train
-car_test
+glimpse(car_train)
+glimpse(car_test)
