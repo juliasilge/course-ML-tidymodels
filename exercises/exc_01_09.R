@@ -1,4 +1,5 @@
 library(tidymodels)
+library(randomForest)
 
 car_test <- readRDS("data/c1_test.rds")
 fit_lm <- readRDS("data/c1_fit_lm.rds")
