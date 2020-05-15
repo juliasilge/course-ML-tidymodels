@@ -1,3 +1,4 @@
+library(randomForest)
 car_train <- readRDS("data/c1_train.rds")
 fit_lm <- readRDS("data/c1_fit_lm.rds")
 fit_rf <- readRDS("data/c1_fit_rf.rds")
